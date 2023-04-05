@@ -1,14 +1,14 @@
 package com.mhl.mycompanybackend.pojo;
 
-public class LoginRequest {
+public class UserAndPasswordRequest {
 
     private String username;
     private String password;
 
-    public LoginRequest() {
+    public UserAndPasswordRequest() {
     }
 
-    public LoginRequest(String username, String password) {
+    public UserAndPasswordRequest(String username, String password) {
         this.username = username;
         this.password = password;
     }

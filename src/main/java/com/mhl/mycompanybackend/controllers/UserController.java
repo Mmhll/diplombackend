@@ -1,5 +1,6 @@
 package com.mhl.mycompanybackend.controllers;
 
+import com.mhl.mycompanybackend.pojo.UserAndPasswordRequest;
 import com.mhl.mycompanybackend.pojo.UserRequest;
 import com.mhl.mycompanybackend.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,5 +17,10 @@ public class UserController {
     @PostMapping("/update_user_self")
     public ResponseEntity<?> updateUserSelf(@RequestBody UserRequest request){
         return userService.setUserData(request);
+    }
+
+    @PostMapping("/update_user_password")
+    public ResponseEntity<?> updateUserPassword(@RequestBody UserAndPasswordRequest request){
+        return userService.setUserPassword(request);
     }
 }

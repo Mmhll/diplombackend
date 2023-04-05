@@ -3,7 +3,7 @@ package com.mhl.mycompanybackend.service;
 import com.mhl.mycompanybackend.configs.jwt.JwtUtils;
 import com.mhl.mycompanybackend.models.*;
 import com.mhl.mycompanybackend.pojo.JwtResponse;
-import com.mhl.mycompanybackend.pojo.LoginRequest;
+import com.mhl.mycompanybackend.pojo.UserAndPasswordRequest;
 import com.mhl.mycompanybackend.pojo.MessageResponse;
 import com.mhl.mycompanybackend.pojo.SignupRequest;
 import com.mhl.mycompanybackend.repository.PermissionsRepository;
@@ -16,17 +16,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 @Service
 public class AuthenticationService {
@@ -45,12 +40,12 @@ public class AuthenticationService {
     @Autowired
     JwtUtils jwtUtils;
 
-    public ResponseEntity<JwtResponse> authenticate(LoginRequest loginRequest) {
+    public ResponseEntity<JwtResponse> authenticate(UserAndPasswordRequest userAndPasswordRequest) {
 
         Authentication authentication = authenticationManager
                 .authenticate(new UsernamePasswordAuthenticationToken(
-                        loginRequest.getUsername(),
-                        loginRequest.getPassword()));
+                        userAndPasswordRequest.getUsername(),
+                        userAndPasswordRequest.getPassword()));
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
         String jwt = jwtUtils.generateJwtToken(authentication);
@@ -93,6 +88,6 @@ public class AuthenticationService {
         roles.add(userRole);
         user.setRoles(roles);
         userRepository.save(user);
-        return authenticate(new LoginRequest(username, signupRequest.getPassword()));
+        return authenticate(new UserAndPasswordRequest(username, signupRequest.getPassword()));
     }
 }
