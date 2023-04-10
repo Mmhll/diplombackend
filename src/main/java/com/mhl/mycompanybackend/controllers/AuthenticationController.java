@@ -1,6 +1,6 @@
 package com.mhl.mycompanybackend.controllers;
 
-import com.mhl.mycompanybackend.pojo.UserAndPasswordRequest;
+import com.mhl.mycompanybackend.pojo.SignInRequest;
 import com.mhl.mycompanybackend.pojo.SignupRequest;
 import com.mhl.mycompanybackend.service.AuthenticationService;
 import com.mhl.mycompanybackend.utils.ErrorMessages;
@@ -19,9 +19,9 @@ public class AuthenticationController {
     ErrorMessages messages;
 
     @PostMapping("/signin")
-    public ResponseEntity<?> authUser(@RequestBody UserAndPasswordRequest userAndPasswordRequest) {
+    public ResponseEntity<?> authUser(@RequestBody SignInRequest signInRequest) {
         try {
-            return authenticationService.authenticate(userAndPasswordRequest);
+            return authenticationService.authenticate(signInRequest);
         } catch (Exception e){
             return messages.badRequest();
         }

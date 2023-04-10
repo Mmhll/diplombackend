@@ -1,21 +1,27 @@
 package com.mhl.mycompanybackend.pojo;
 
 public class UserRequest {
-    String email;
-    String username;
-    String firstname;
-    String lastname;
-    String middlename;
+    private Long id;
+    private String email;
+    private String username;
+    private String firstname;
+    private String lastname;
+    private String middlename;
 
     public UserRequest() {
     }
 
-    public UserRequest(String email, String username, String firstname, String lastname, String middlename) {
+    public UserRequest(Long id, String email, String username, String firstname, String lastname, String middlename) {
+        this.id = id;
         this.email = email;
         this.username = username;
         this.firstname = firstname;
         this.lastname = lastname;
         this.middlename = middlename;
+    }
+
+    public Long getId() {
+        return id;
     }
 
     public String getEmail() {

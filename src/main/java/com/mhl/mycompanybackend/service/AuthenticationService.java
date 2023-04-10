@@ -3,7 +3,7 @@ package com.mhl.mycompanybackend.service;
 import com.mhl.mycompanybackend.configs.jwt.JwtUtils;
 import com.mhl.mycompanybackend.models.*;
 import com.mhl.mycompanybackend.pojo.JwtResponse;
-import com.mhl.mycompanybackend.pojo.UserAndPasswordRequest;
+import com.mhl.mycompanybackend.pojo.SignInRequest;
 import com.mhl.mycompanybackend.pojo.MessageResponse;
 import com.mhl.mycompanybackend.pojo.SignupRequest;
 import com.mhl.mycompanybackend.repository.PermissionsRepository;
@@ -40,12 +40,12 @@ public class AuthenticationService {
     @Autowired
     JwtUtils jwtUtils;
 
-    public ResponseEntity<JwtResponse> authenticate(UserAndPasswordRequest userAndPasswordRequest) {
+    public ResponseEntity<JwtResponse> authenticate(SignInRequest signInRequest) {
 
         Authentication authentication = authenticationManager
                 .authenticate(new UsernamePasswordAuthenticationToken(
-                        userAndPasswordRequest.getUsername(),
-                        userAndPasswordRequest.getPassword()));
+                        signInRequest.getUsername(),
+                        signInRequest.getPassword()));
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
         String jwt = jwtUtils.generateJwtToken(authentication);
@@ -88,6 +88,6 @@ public class AuthenticationService {
         roles.add(userRole);
         user.setRoles(roles);
         userRepository.save(user);
-        return authenticate(new UserAndPasswordRequest(username, signupRequest.getPassword()));
+        return authenticate(new SignInRequest(username, signupRequest.getPassword()));
     }
 }
