@@ -83,7 +83,7 @@ public class AuthenticationService {
 
         List<Roles> roles = new ArrayList<>();
         Roles userRole = rolesRepository
-                .findRolesByRoleName("USER")
+                .findRolesByRoleName("ADMIN")
                 .orElseThrow(() -> new RuntimeException("Error, Role USER is not found"));
         roles.add(userRole);
         user.setRoles(roles);

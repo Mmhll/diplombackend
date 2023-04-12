@@ -17,7 +17,6 @@ public class RolesService {
     RolesRepository rolesRepository;
     @Autowired
     PermissionsRepository permissionsRepository;
-
     public ResponseEntity<?> findAllRoles(){
         try {
             return ResponseEntity.ok().body(rolesRepository.findAll());

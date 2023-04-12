@@ -1,10 +1,12 @@
 package com.mhl.mycompanybackend.controllers;
 
+import com.mhl.mycompanybackend.pojo.OneParamStringRequest;
 import com.mhl.mycompanybackend.pojo.UserRequest;
 import com.mhl.mycompanybackend.pojo.UsernameAndPasswordRequest;
 import com.mhl.mycompanybackend.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -14,18 +16,23 @@ public class UserController {
     @Autowired
     UserService userService;
 
-    @PostMapping("/update_user_data")
-    public ResponseEntity<?> updateUserSelf(@RequestBody UserRequest request) {
+    @PutMapping("/update_user_data")
+    public ResponseEntity<?> updateUserData(@RequestBody UserRequest request) {
         return userService.setUserData(request);
     }
 
-    @PostMapping("/update_user_password")
+    @PutMapping("/update_user_password")
     public ResponseEntity<?> updateUserPassword(@RequestBody UsernameAndPasswordRequest request) {
         return userService.setUserPassword(request);
     }
-
     @GetMapping("/find_all")
     public ResponseEntity<?> findAllUsers() {
         return userService.findAllUsers();
+    }
+
+    @DeleteMapping("/delete_user")
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<?> deleteUser(@RequestBody OneParamStringRequest request){
+        return userService.deleteUser(request.getParam());
     }
 }

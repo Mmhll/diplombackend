@@ -2,7 +2,6 @@ package com.mhl.mycompanybackend.service;
 
 import com.mhl.mycompanybackend.models.Users;
 import com.mhl.mycompanybackend.pojo.MessageResponse;
-import com.mhl.mycompanybackend.pojo.SignInRequest;
 import com.mhl.mycompanybackend.pojo.UserRequest;
 import com.mhl.mycompanybackend.pojo.UsernameAndPasswordRequest;
 import com.mhl.mycompanybackend.repository.UserDataRepository;
@@ -48,5 +47,16 @@ public class UserService {
     }
     public ResponseEntity<List<Users>> findAllUsers(){
         return ResponseEntity.ok().body(userRepository.findAll());
+    }
+
+    public ResponseEntity<?> deleteUser(String email) {
+        var user = userRepository.findByEmail(email).orElseThrow(() -> new RuntimeException("User not found"));
+        try {
+            userRepository.deleteFromUserRoles(user.getId());
+            userRepository.delete(user);
+            return ResponseEntity.ok().body(new MessageResponse("User was successfully deleted"));
+        } catch (Exception e){
+            return ResponseEntity.badRequest().body(new MessageResponse(e.getMessage()));
+        }
     }
 }

@@ -28,9 +28,13 @@ public interface UserRepository extends JpaRepository<Users, Long> {
 
     @Transactional
     @Modifying
+    @Query(nativeQuery = true, value = "DELETE FROM user_roles WHERE user_id = ?1")
+    void deleteFromUserRoles(Long id);
+
+    @Transactional
+    @Modifying
     @Query(nativeQuery = true, value = "UPDATE users SET" +
             " password = ?2 " +
             "WHERE id = ?1")
     void updateUserPassword(Long id, String password);
-
 }
