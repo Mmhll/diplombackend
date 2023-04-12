@@ -24,7 +24,7 @@ public class UserController {
         return userService.setUserPassword(request);
     }
 
-    @GetMapping("find_all")
+    @GetMapping("/find_all")
     public ResponseEntity<?> findAllUsers() {
         return userService.findAllUsers();
     }

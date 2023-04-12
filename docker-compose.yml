@@ -21,5 +21,6 @@ services:
       - POSTGRES_DB=mhl
       - POSTGRES_USER=mhl
       - POSTGRES_PASSWORD=123
+      - PGDATA=/var/lib/postgresql/data
     ports:
       - 5432:5432
