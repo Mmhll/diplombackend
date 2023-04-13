@@ -12,33 +12,30 @@ public class Chat {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String title;
+    @Column(name = "created_at", nullable = false, updatable = false, insertable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     private Timestamp created_at;
     private Timestamp updated_at;
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinTable(name = "chat_message",
+            joinColumns = @JoinColumn(name = "chat_id"),
+            inverseJoinColumns = @JoinColumn(name = "message_id")
+    )
+    private List<Message> messages = new ArrayList<>();
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinTable(name = "chat_member",
+    @JoinTable(name = "chat_user",
             joinColumns = @JoinColumn(name = "chat_id"),
-            inverseJoinColumns = @JoinColumn(name = "member_id"))
-    private List<Member> members = new ArrayList<>();
-
+            inverseJoinColumns = @JoinColumn(name = "user_id"))
+    private List<Users> users = new ArrayList<>();
 
 
     public Chat() {
     }
 
-    public Chat(String title, Timestamp created_at, Timestamp updated_at) {
+    public Chat(String title) {
         this.title = title;
-        this.created_at = created_at;
-        this.updated_at = updated_at;
     }
 
-    public List<Member> getMembers() {
-        return members;
-    }
-
-    public void setMembers(List<Member> members) {
-        this.members = members;
-    }
 
     public void setId(Long id) {
         this.id = id;
@@ -70,5 +67,21 @@ public class Chat {
 
     public void setUpdated_at(Timestamp updated_at) {
         this.updated_at = updated_at;
+    }
+
+    public List<Message> getMessages() {
+        return messages;
+    }
+
+    public void setMessages(List<Message> messages) {
+        this.messages = messages;
+    }
+
+    public List<Users> getUsers() {
+        return users;
+    }
+
+    public void setUsers(List<Users> users) {
+        this.users = users;
     }
 }

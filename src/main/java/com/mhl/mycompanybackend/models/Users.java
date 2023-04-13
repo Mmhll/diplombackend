@@ -31,8 +31,8 @@ public class Users {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id")
     private UserData userData;
-    @OneToOne(mappedBy = "user")
-    Member member;
+    @OneToMany(mappedBy = "user")
+    List<Message> messages = new ArrayList<>();
 
     public Users() {
     }
