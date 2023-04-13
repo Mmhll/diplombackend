@@ -21,7 +21,9 @@ public class UserService {
     private UserDataRepository userDataRepository;
     @Autowired
     private PasswordEncoder encoder;
-
+    public Users getUserById(Long id){
+        return userRepository.findById(id).orElseThrow(() -> new RuntimeException("User not found"));
+    }
     public ResponseEntity<MessageResponse> setUserData(UserRequest request){
         try {
 
