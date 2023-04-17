@@ -9,7 +9,7 @@ services:
     environment:
       - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/mhl
       - SPRING_DATASOURCE_USERNAME=mhl
-      - SPRING_DATASOURCE_PASSWORD=123
+      - SPRING_DATASOURCE_PASSWORD=5DrX2kpqfa
       - SPRING_JPA_HIBERNATE_DDL_AUTO=update
     ports:
       - 8080:8080
@@ -20,7 +20,7 @@ services:
     environment:
       - POSTGRES_DB=mhl
       - POSTGRES_USER=mhl
-      - POSTGRES_PASSWORD=123
+      - POSTGRES_PASSWORD=5DrX2kpqfa
       - PGDATA=/var/lib/postgresql/data
     ports:
       - 5432:5432

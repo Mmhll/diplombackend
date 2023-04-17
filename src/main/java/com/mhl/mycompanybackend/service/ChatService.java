@@ -3,6 +3,7 @@ package com.mhl.mycompanybackend.service;
 import com.mhl.mycompanybackend.models.Chat;
 import com.mhl.mycompanybackend.models.Users;
 import com.mhl.mycompanybackend.pojo.CreateChatRequest;
+import com.mhl.mycompanybackend.pojo.IdRequest;
 import com.mhl.mycompanybackend.pojo.MessageResponse;
 import com.mhl.mycompanybackend.pojo.UpdateChatNameRequest;
 import com.mhl.mycompanybackend.repository.ChatRepository;
@@ -37,8 +38,29 @@ public class ChatService {
             return ResponseEntity.badRequest().body(new MessageResponse(e.getMessage()));
         }
     }
- /*   public ResponseEntity<?> updateChatName(UpdateChatNameRequest request){
+    public ResponseEntity<?> updateChatName(UpdateChatNameRequest request){
+        try {
+            chatRepository.updateChatByName(request.getId(), request.getName());
+            return ResponseEntity.ok().body(new MessageResponse("Chat name was updated"));
+        } catch (Exception e){
+            return ResponseEntity.badRequest().body(new MessageResponse("Chat not found or something went wrong"));
+        }
+    }
 
-        chatRepository.updateChatName(request.getId(), request.getName());
-    }*/
+    public ResponseEntity<?> deleteChat(IdRequest request){
+        try {
+            chatRepository.deleteById(request.getId());
+            return ResponseEntity.ok().body(new MessageResponse("Chat was deleted"));
+        } catch (Exception e){
+            return ResponseEntity.badRequest().body(new MessageResponse("Chat not found or something went wrong"));
+        }
+    }
+
+    public ResponseEntity<?> getChats(IdRequest request){
+        try {
+            return ResponseEntity.ok().body(chatRepository.getChatsByUserId(request.getId()));
+        } catch (Exception e){
+            return ResponseEntity.badRequest().body(new MessageResponse("No chats found"));
+        }
+    }
 }
