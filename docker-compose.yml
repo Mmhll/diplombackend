@@ -9,7 +9,7 @@ services:
     depends_on:
       - postgres
     environment:
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/mhl
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://185.177.216.63:5432/mhl
       - SPRING_DATASOURCE_USERNAME=mhl
       - SPRING_DATASOURCE_PASSWORD=5DrX2kpqfa
       - SPRING_JPA_HIBERNATE_DDL_AUTO=update
