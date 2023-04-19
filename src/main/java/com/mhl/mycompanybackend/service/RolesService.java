@@ -13,10 +13,16 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class RolesService {
-    @Autowired
+    final
     RolesRepository rolesRepository;
-    @Autowired
+    final
     PermissionsRepository permissionsRepository;
+
+    public RolesService(RolesRepository rolesRepository, PermissionsRepository permissionsRepository) {
+        this.rolesRepository = rolesRepository;
+        this.permissionsRepository = permissionsRepository;
+    }
+
     public ResponseEntity<?> findAllRoles(){
         try {
             return ResponseEntity.ok().body(rolesRepository.findAll());

@@ -25,20 +25,30 @@ import java.util.List;
 
 @Service
 public class AuthenticationService {
-    @Autowired
+    final
     AuthenticationManager authenticationManager;
-    @Autowired
+    final
     UserRepository userRepository;
-    @Autowired
+    final
     UserDataRepository userDataRepository;
-    @Autowired
+    final
     PermissionsRepository permissionsRepository;
-    @Autowired
+    final
     RolesRepository rolesRepository;
-    @Autowired
+    final
     PasswordEncoder passwordEncoder;
-    @Autowired
+    final
     JwtUtils jwtUtils;
+
+    public AuthenticationService(AuthenticationManager authenticationManager, UserRepository userRepository, UserDataRepository userDataRepository, PermissionsRepository permissionsRepository, RolesRepository rolesRepository, PasswordEncoder passwordEncoder, JwtUtils jwtUtils) {
+        this.authenticationManager = authenticationManager;
+        this.userRepository = userRepository;
+        this.userDataRepository = userDataRepository;
+        this.permissionsRepository = permissionsRepository;
+        this.rolesRepository = rolesRepository;
+        this.passwordEncoder = passwordEncoder;
+        this.jwtUtils = jwtUtils;
+    }
 
     public ResponseEntity<JwtResponse> authenticate(SignInRequest signInRequest) {
 
@@ -83,7 +93,7 @@ public class AuthenticationService {
 
         List<Roles> roles = new ArrayList<>();
         Roles userRole = rolesRepository
-                .findRolesByRoleName("ADMIN")
+                .findRolesByRoleName("USER")
                 .orElseThrow(() -> new RuntimeException("Error, Role USER is not found"));
         roles.add(userRole);
         user.setRoles(roles);

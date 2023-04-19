@@ -2,10 +2,7 @@ package com.mhl.mycompanybackend.service;
 
 import com.mhl.mycompanybackend.models.Chat;
 import com.mhl.mycompanybackend.models.Users;
-import com.mhl.mycompanybackend.pojo.CreateChatRequest;
-import com.mhl.mycompanybackend.pojo.IdRequest;
-import com.mhl.mycompanybackend.pojo.MessageResponse;
-import com.mhl.mycompanybackend.pojo.UpdateChatNameRequest;
+import com.mhl.mycompanybackend.pojo.*;
 import com.mhl.mycompanybackend.repository.ChatRepository;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -38,7 +35,7 @@ public class ChatService {
             return ResponseEntity.badRequest().body(new MessageResponse(e.getMessage()));
         }
     }
-    public ResponseEntity<?> updateChatName(UpdateChatNameRequest request){
+    public ResponseEntity<MessageResponse> updateChatName(UpdateChatNameRequest request){
         try {
             chatRepository.updateChatByName(request.getId(), request.getName());
             return ResponseEntity.ok().body(new MessageResponse("Chat name was updated"));
@@ -47,7 +44,7 @@ public class ChatService {
         }
     }
 
-    public ResponseEntity<?> deleteChat(IdRequest request){
+    public ResponseEntity<MessageResponse> deleteChat(IdRequest request){
         try {
             chatRepository.deleteById(request.getId());
             return ResponseEntity.ok().body(new MessageResponse("Chat was deleted"));
@@ -61,6 +58,24 @@ public class ChatService {
             return ResponseEntity.ok().body(chatRepository.getChatsByUserId(request.getId()));
         } catch (Exception e){
             return ResponseEntity.badRequest().body(new MessageResponse("No chats found"));
+        }
+    }
+
+    public ResponseEntity<MessageResponse> deleteChatMember(UserIdChatIdRequest request){
+        try {
+            chatRepository.deleteUserFromChat(request.getChat_id(), request.getUser_id());
+            return ResponseEntity.ok().body(new MessageResponse("User was deleted"));
+        } catch (Exception e){
+            return ResponseEntity.badRequest().body(new MessageResponse("User not found in this chat or something went wrong"));
+        }
+    }
+
+    public ResponseEntity<MessageResponse> addChatMember(UserIdChatIdRequest request){
+        try {
+            chatRepository.addUserToChat(request.getChat_id(), request.getUser_id());
+            return ResponseEntity.ok().body(new MessageResponse("User was added"));
+        } catch (Exception e){
+            return ResponseEntity.badRequest().body(new MessageResponse("User not found or something went wrong"));
         }
     }
 }

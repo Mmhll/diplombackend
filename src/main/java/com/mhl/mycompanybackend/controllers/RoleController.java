@@ -13,8 +13,12 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/roles")
 @CrossOrigin(origins = "*", maxAge = 3600)
 public class RoleController {
-    @Autowired
+    final
     RolesService rolesService;
+
+    public RoleController(RolesService rolesService) {
+        this.rolesService = rolesService;
+    }
 
     @GetMapping("/get_all")
     ResponseEntity<?> getAllRoles() {

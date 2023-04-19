@@ -15,12 +15,16 @@ import java.util.List;
 
 @Service
 public class UserService {
-    @Autowired
-    private UserRepository userRepository;
-    @Autowired
-    private UserDataRepository userDataRepository;
-    @Autowired
-    private PasswordEncoder encoder;
+    private final UserRepository userRepository;
+    private final UserDataRepository userDataRepository;
+    private final PasswordEncoder encoder;
+
+    public UserService(UserRepository userRepository, UserDataRepository userDataRepository, PasswordEncoder encoder) {
+        this.userRepository = userRepository;
+        this.userDataRepository = userDataRepository;
+        this.encoder = encoder;
+    }
+
     public Users getUserById(Long id){
         return userRepository.findById(id).orElseThrow(() -> new RuntimeException("User not found"));
     }

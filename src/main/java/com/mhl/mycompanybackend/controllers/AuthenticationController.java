@@ -13,10 +13,19 @@ import org.springframework.web.bind.annotation.*;
 @CrossOrigin(origins = "*", maxAge = 3600)
 public class AuthenticationController {
 
-    @Autowired
+    final
     AuthenticationService authenticationService;
-    @Autowired
     ErrorMessages messages;
+
+    public AuthenticationController(AuthenticationService authenticationService) {
+        this.authenticationService = authenticationService;
+    }
+
+    @Autowired
+    public AuthenticationController(AuthenticationService authenticationService, ErrorMessages messages) {
+        this.authenticationService = authenticationService;
+        this.messages = messages;
+    }
 
     @PostMapping("/signin")
     public ResponseEntity<?> authUser(@RequestBody SignInRequest signInRequest) {

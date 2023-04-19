@@ -21,4 +21,14 @@ public interface ChatRepository extends JpaRepository<Chat, Long> {
     @Modifying
     @Query(nativeQuery = true, value = "SELECT * FROM chat WHERE (SELECT chat_id FROM chat_user WHERE user_id = ?1) = chat.id;")
     List<Chat> getChatsByUserId(Long id);
+
+    @Transactional
+    @Modifying
+    @Query(nativeQuery = true, value = "DELETE FROM mhl.public.chat_user WHERE mhl.public.chat_user.chat_id = ?1 AND mhl.public.chat_user.user_id = ?2")
+    void deleteUserFromChat(Long chatId, Long userId);
+
+    @Transactional
+    @Modifying
+    @Query(nativeQuery = true, value = "INSERT INTO chat_user(chat_id, user_id) VALUES (?1, ?2)")
+    void addUserToChat(Long chatId, Long userId);
 }
