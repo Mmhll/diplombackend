@@ -25,4 +25,4 @@ services:
       - POSTGRES_PASSWORD=5DrX2kpqfa
       - PGDATA=/var/lib/postgresql/data
     ports:
-      - "5400:5404"
+      - "5400:5400"
