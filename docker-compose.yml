@@ -7,7 +7,7 @@ services:
       context: .
     container_name: app
     depends_on:
-      - postgres
+      - db
     environment:
       - SPRING_DATASOURCE_URL=jdbc:postgresql://185.177.216.63:5400/mhl
       - SPRING_DATASOURCE_USERNAME=mhl
