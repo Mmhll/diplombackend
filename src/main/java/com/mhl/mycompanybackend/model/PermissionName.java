@@ -1,4 +1,4 @@
-package com.mhl.mycompanybackend.models;
+package com.mhl.mycompanybackend.model;
 
 public enum PermissionName {
     ROLE_USER,

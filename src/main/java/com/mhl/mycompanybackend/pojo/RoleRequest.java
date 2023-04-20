@@ -1,7 +1,5 @@
 package com.mhl.mycompanybackend.pojo;
 
-import com.mhl.mycompanybackend.models.PermissionName;
-
 public class RoleRequest {
     private String rolename;
     private String permission;

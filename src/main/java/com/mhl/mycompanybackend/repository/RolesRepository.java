@@ -1,7 +1,7 @@
 package com.mhl.mycompanybackend.repository;
 
-import com.mhl.mycompanybackend.models.PermissionName;
-import com.mhl.mycompanybackend.models.Roles;
+import com.mhl.mycompanybackend.model.PermissionName;
+import com.mhl.mycompanybackend.model.Roles;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;

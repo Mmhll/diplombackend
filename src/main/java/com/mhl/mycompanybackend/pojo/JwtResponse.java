@@ -1,6 +1,6 @@
 package com.mhl.mycompanybackend.pojo;
 
-import com.mhl.mycompanybackend.models.UserData;
+import com.mhl.mycompanybackend.model.UserData;
 
 import java.util.List;
 

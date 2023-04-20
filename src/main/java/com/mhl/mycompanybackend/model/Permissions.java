@@ -1,4 +1,4 @@
-package com.mhl.mycompanybackend.models;
+package com.mhl.mycompanybackend.model;
 
 import javax.persistence.*;
 import java.util.List;

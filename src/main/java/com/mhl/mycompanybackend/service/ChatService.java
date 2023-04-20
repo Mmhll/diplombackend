@@ -1,7 +1,7 @@
 package com.mhl.mycompanybackend.service;
 
-import com.mhl.mycompanybackend.models.Chat;
-import com.mhl.mycompanybackend.models.Users;
+import com.mhl.mycompanybackend.model.Chat;
+import com.mhl.mycompanybackend.model.Users;
 import com.mhl.mycompanybackend.pojo.*;
 import com.mhl.mycompanybackend.repository.ChatRepository;
 import org.springframework.http.ResponseEntity;

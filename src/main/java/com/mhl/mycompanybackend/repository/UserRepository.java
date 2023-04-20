@@ -1,6 +1,6 @@
 package com.mhl.mycompanybackend.repository;
 
-import com.mhl.mycompanybackend.models.Users;
+import com.mhl.mycompanybackend.model.Users;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;

@@ -1,8 +1,8 @@
 package com.mhl.mycompanybackend.utils;
 
-import com.mhl.mycompanybackend.models.PermissionName;
-import com.mhl.mycompanybackend.models.Permissions;
-import com.mhl.mycompanybackend.models.Roles;
+import com.mhl.mycompanybackend.model.PermissionName;
+import com.mhl.mycompanybackend.model.Permissions;
+import com.mhl.mycompanybackend.model.Roles;
 import com.mhl.mycompanybackend.repository.PermissionsRepository;
 import com.mhl.mycompanybackend.repository.RolesRepository;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,10 +1,9 @@
-package com.mhl.mycompanybackend.controllers;
+package com.mhl.mycompanybackend.controller;
 
 import com.mhl.mycompanybackend.pojo.OneParamStringRequest;
 import com.mhl.mycompanybackend.pojo.UserRequest;
 import com.mhl.mycompanybackend.pojo.UsernameAndPasswordRequest;
 import com.mhl.mycompanybackend.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;

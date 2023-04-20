@@ -1,9 +1,9 @@
 package com.mhl.mycompanybackend.userdetails;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.mhl.mycompanybackend.models.Roles;
-import com.mhl.mycompanybackend.models.UserData;
-import com.mhl.mycompanybackend.models.Users;
+import com.mhl.mycompanybackend.model.Roles;
+import com.mhl.mycompanybackend.model.UserData;
+import com.mhl.mycompanybackend.model.Users;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

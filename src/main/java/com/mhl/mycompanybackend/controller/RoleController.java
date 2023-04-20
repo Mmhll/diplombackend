@@ -1,12 +1,10 @@
-package com.mhl.mycompanybackend.controllers;
+package com.mhl.mycompanybackend.controller;
 
-import com.mhl.mycompanybackend.models.PermissionName;
+import com.mhl.mycompanybackend.model.PermissionName;
 import com.mhl.mycompanybackend.pojo.RoleRequest;
 import com.mhl.mycompanybackend.pojo.RolenameRequest;
 import com.mhl.mycompanybackend.service.RolesService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController

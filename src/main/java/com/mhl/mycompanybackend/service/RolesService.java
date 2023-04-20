@@ -1,14 +1,12 @@
 package com.mhl.mycompanybackend.service;
 
-import com.mhl.mycompanybackend.models.PermissionName;
-import com.mhl.mycompanybackend.models.Permissions;
-import com.mhl.mycompanybackend.models.Roles;
+import com.mhl.mycompanybackend.model.PermissionName;
+import com.mhl.mycompanybackend.model.Permissions;
+import com.mhl.mycompanybackend.model.Roles;
 import com.mhl.mycompanybackend.pojo.MessageResponse;
 import com.mhl.mycompanybackend.repository.PermissionsRepository;
 import com.mhl.mycompanybackend.repository.RolesRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Service;
 
 @Service

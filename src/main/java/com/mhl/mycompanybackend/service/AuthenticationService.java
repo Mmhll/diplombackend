@@ -1,7 +1,7 @@
 package com.mhl.mycompanybackend.service;
 
 import com.mhl.mycompanybackend.configs.jwt.JwtUtils;
-import com.mhl.mycompanybackend.models.*;
+import com.mhl.mycompanybackend.model.*;
 import com.mhl.mycompanybackend.pojo.JwtResponse;
 import com.mhl.mycompanybackend.pojo.SignInRequest;
 import com.mhl.mycompanybackend.pojo.MessageResponse;
@@ -11,7 +11,6 @@ import com.mhl.mycompanybackend.repository.RolesRepository;
 import com.mhl.mycompanybackend.repository.UserDataRepository;
 import com.mhl.mycompanybackend.repository.UserRepository;
 import com.mhl.mycompanybackend.userdetails.UserDetailsImpl;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

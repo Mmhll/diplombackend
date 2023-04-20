@@ -1,12 +1,11 @@
 package com.mhl.mycompanybackend.service;
 
-import com.mhl.mycompanybackend.models.Users;
+import com.mhl.mycompanybackend.model.Users;
 import com.mhl.mycompanybackend.pojo.MessageResponse;
 import com.mhl.mycompanybackend.pojo.UserRequest;
 import com.mhl.mycompanybackend.pojo.UsernameAndPasswordRequest;
 import com.mhl.mycompanybackend.repository.UserDataRepository;
 import com.mhl.mycompanybackend.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;

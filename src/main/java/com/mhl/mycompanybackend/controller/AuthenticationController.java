@@ -1,4 +1,4 @@
-package com.mhl.mycompanybackend.controllers;
+package com.mhl.mycompanybackend.controller;
 
 import com.mhl.mycompanybackend.pojo.SignInRequest;
 import com.mhl.mycompanybackend.pojo.SignupRequest;

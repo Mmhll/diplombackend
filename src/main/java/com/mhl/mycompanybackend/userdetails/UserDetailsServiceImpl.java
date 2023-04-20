@@ -1,6 +1,6 @@
 package com.mhl.mycompanybackend.userdetails;
 
-import com.mhl.mycompanybackend.models.Users;
+import com.mhl.mycompanybackend.model.Users;
 import com.mhl.mycompanybackend.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;

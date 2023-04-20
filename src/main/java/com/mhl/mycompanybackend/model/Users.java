@@ -1,7 +1,6 @@
-package com.mhl.mycompanybackend.models;
+package com.mhl.mycompanybackend.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -33,6 +32,42 @@ public class Users {
     private UserData userData;
     @OneToMany(mappedBy = "user")
     List<Message> messages = new ArrayList<>();
+
+    @OneToOne(mappedBy = "creator", cascade = CascadeType.ALL)
+    @PrimaryKeyJoinColumn
+    Tasks task_creator;
+
+    @OneToOne(mappedBy = "executor", cascade = CascadeType.ALL)
+    @PrimaryKeyJoinColumn
+    Tasks task_executor;
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public List<Message> getMessages() {
+        return messages;
+    }
+
+    public void setMessages(List<Message> messages) {
+        this.messages = messages;
+    }
+
+    public Tasks getTask_creator() {
+        return task_creator;
+    }
+
+    public void setTask_creator(Tasks task_creator) {
+        this.task_creator = task_creator;
+    }
+
+    public Tasks getTask_executor() {
+        return task_executor;
+    }
+
+    public void setTask_executor(Tasks task_executor) {
+        this.task_executor = task_executor;
+    }
 
     public Users() {
     }
