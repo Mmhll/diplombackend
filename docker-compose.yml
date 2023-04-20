@@ -16,6 +16,19 @@ services:
     ports:
       - "8000:8000"
 
+  db:
+    image: 'postgres:14.7-alpine'
+    container_name: db
+    environment:
+      - POSTGRES_DB=mhl
+      - POSTGRES_USER=mhl
+      - POSTGRES_PASSWORD=5DrX2kpqfa
+      - PGDATA=/var/lib/postgresql/data
+    ports:
+      - "5400:5400"
+    command: -p 5400
+    expose:
+      - 5400
   pgbackups:
     container_name: backup
     image: prodrigestivill/postgres-backup-local
