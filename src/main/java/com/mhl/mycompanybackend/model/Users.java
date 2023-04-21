@@ -33,12 +33,10 @@ public class Users {
     @OneToMany(mappedBy = "user")
     List<Message> messages = new ArrayList<>();
 
-    @OneToOne(mappedBy = "creator", cascade = CascadeType.ALL)
-    @PrimaryKeyJoinColumn
+    @OneToOne(mappedBy = "creator")
     Tasks task_creator;
 
-    @OneToOne(mappedBy = "executor", cascade = CascadeType.ALL)
-    @PrimaryKeyJoinColumn
+    @OneToOne(mappedBy = "executor")
     Tasks task_executor;
 
     public void setId(Long id) {

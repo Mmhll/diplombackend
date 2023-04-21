@@ -14,9 +14,8 @@ public class Tasks {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    @OneToOne
-    @MapsId
-    @JoinColumn(name = "creator_id")
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "creator_id", referencedColumnName = "id")
     private Users creator;
     @JsonFormat(pattern = "yyyy-MM-dd")
     private Date creation_date;
@@ -25,9 +24,8 @@ public class Tasks {
     private String description;
     @JsonFormat(pattern = "yyyy-MM-dd")
     private Date deadline;
-    @OneToOne
-    @MapsId
-    @JoinColumn(name = "executor_id")
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "executor_id", referencedColumnName = "id")
     private Users executor;
     private Long status;
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
