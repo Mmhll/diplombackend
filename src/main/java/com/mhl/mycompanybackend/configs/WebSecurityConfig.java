@@ -62,6 +62,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/api/admin/**").hasAnyRole("ADMIN", "MODERATOR", "EDITUSER")
                 .antMatchers("/api/roles/**").hasAnyRole("ADMIN", "MODERATOR")
                 .antMatchers("/api/chat/**").hasAnyRole("USER", "ADMIN", "MODERATOR", "EDITUSER")
+                .antMatchers("/api/tasks/**").hasAnyRole("USER", "ADMIN", "MODERATOR", "EDITUSER")
                 .anyRequest().authenticated();
 
         http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);

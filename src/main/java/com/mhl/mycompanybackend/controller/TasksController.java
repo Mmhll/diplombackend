@@ -21,12 +21,10 @@ public class TasksController {
     }
 
 
-/*
     @GetMapping("/")
     public ResponseEntity<?> getAllTasks(@RequestBody Long id) {
         return service.getAllTasks(id);
     }
-*/
 
     @GetMapping("/get_task")
     public ResponseEntity<?> getTask(@RequestBody Long id) {

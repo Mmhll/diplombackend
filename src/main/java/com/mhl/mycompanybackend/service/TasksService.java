@@ -17,10 +17,9 @@ public class TasksService {
     public TasksService(TasksRepository tasksRepository) {
         this.tasksRepository = tasksRepository;
     }
-/*
-    public ResponseEntity<List<Tasks>> getAllTasks(Long id) {
-        return ResponseEntity.ok().body(tasksRepository.findAllTasksOfUser(id));
-    }*/
+    public ResponseEntity<?> getAllTasks(Long id) {
+        return ResponseEntity.ok().body(""); /*.body(tasksRepository.(id));*/
+    }
 
     public ResponseEntity<?> getTask(Long id) {
         try {
