@@ -21,7 +21,7 @@ public class TasksController {
     }
 
 
-    @GetMapping("/")
+    @GetMapping("/get_all_tasks")
     public ResponseEntity<?> getAllTasks(@RequestBody Long id) {
         return service.getAllTasks(id);
     }
