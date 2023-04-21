@@ -36,11 +36,11 @@ services:
     volumes:
       - /var/opt/pgbackups:/backups
     links:
-      - db:db
+      - db
     depends_on:
       - db
     environment:
-      - POSTGRES_HOST=http://185.177.216.63:5400/mhl
+      - POSTGRES_HOST=db
       - POSTGRES_DB=mhl
       - POSTGRES_USER=mhl
       - POSTGRES_PASSWORD=5DrX2kpqfa
