@@ -10,4 +10,6 @@ import java.util.List;
 @Repository
 public interface TasksRepository extends JpaRepository<Tasks, Long> {
     List<Tasks> findAllByExecutorEquals(Users executor);
+    List<Tasks> findAllByCreatorEquals(Users creator);
+    List<Tasks> findAllByMembersContains(Users member);
 }

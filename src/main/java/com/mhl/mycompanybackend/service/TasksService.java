@@ -17,9 +17,19 @@ public class TasksService {
         this.tasksRepository = tasksRepository;
         this.userRepository = userRepository;
     }
-    public ResponseEntity<?> getAllTasks(Long id) {
+    public ResponseEntity<?> getAllTasksWhereExecutor(Long id) {
         Users executor = userRepository.findById(id).orElseThrow(() -> new RuntimeException("User not found"));
         return ResponseEntity.ok().body(tasksRepository.findAllByExecutorEquals(executor));
+    }
+
+    public ResponseEntity<?> getAllTasksWhereCreator(Long id) {
+        Users creator = userRepository.findById(id).orElseThrow(() -> new RuntimeException("User not found"));
+        return ResponseEntity.ok().body(tasksRepository.findAllByCreatorEquals(creator));
+    }
+
+    public ResponseEntity<?> getAllTasksWhereMember(Long id) {
+        Users member = userRepository.findById(id).orElseThrow(() -> new RuntimeException("User not found"));
+        return ResponseEntity.ok().body(tasksRepository.findAllByMembersContains(member));
     }
 
     public ResponseEntity<?> getTask(Long id) {

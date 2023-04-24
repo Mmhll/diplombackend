@@ -1,7 +1,8 @@
 package com.mhl.mycompanybackend.controller;
 
 import com.mhl.mycompanybackend.model.Tasks;
-import com.mhl.mycompanybackend.pojo.*;
+import com.mhl.mycompanybackend.pojo.IdRequest;
+import com.mhl.mycompanybackend.pojo.MessageResponse;
 import com.mhl.mycompanybackend.service.TasksService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,9 +19,19 @@ public class TasksController {
     }
 
 
-    @GetMapping("/get_all_tasks")
-    public ResponseEntity<?> getAllTasks(@RequestBody IdRequest request) {
-        return service.getAllTasks(request.getId());
+    @GetMapping("/get_all_tasks_executor")
+    public ResponseEntity<?> getAllTasksExecutor(@RequestBody IdRequest request) {
+        return service.getAllTasksWhereExecutor(request.getId());
+    }
+
+    @GetMapping("/get_all_tasks_creator")
+    public ResponseEntity<?> getAllTasksCreator(@RequestBody IdRequest request) {
+        return service.getAllTasksWhereCreator(request.getId());
+    }
+
+    @GetMapping("/get_all_tasks_member")
+    public ResponseEntity<?> getAllTasksMember(@RequestBody IdRequest request) {
+        return service.getAllTasksWhereMember(request.getId());
     }
 
     @GetMapping("/get_task")

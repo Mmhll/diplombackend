@@ -5,7 +5,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "users",
@@ -42,6 +44,8 @@ public class Users {
     @OneToMany(mappedBy = "executor")
     List<Tasks> task_executor;
 
+    @ManyToMany(mappedBy = "members", cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+    private Set<Tasks> tasks = new HashSet<>();
     public void setId(Long id) {
         this.id = id;
     }
@@ -78,6 +82,14 @@ public class Users {
         this.email = email;
         this.password = password;
         this.userData = userData;
+    }
+
+    public Set<Tasks> getTasks() {
+        return tasks;
+    }
+
+    public void setTasks(Set<Tasks> tasks) {
+        this.tasks = tasks;
     }
 
     public Long getId() {
