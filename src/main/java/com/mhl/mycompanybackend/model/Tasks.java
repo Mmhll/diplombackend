@@ -39,7 +39,7 @@ public class Tasks {
     )
     private List<Users> members = new ArrayList<>();
 
-    public Tasks(String name, Users creator, Date creation_date, Date date_of_update, String description, Date deadline, Users executor, Long status, List<Users> members) {
+    public Tasks(String name, Users creator, Date creation_date, Date date_of_update, String description, Date deadline, Users executor, Long status) {
         this.name = name;
         this.creator = creator;
         this.creation_date = creation_date;
@@ -48,7 +48,6 @@ public class Tasks {
         this.deadline = deadline;
         this.executor = executor;
         this.status = status;
-        this.members = members;
     }
 
     public String getName() {
