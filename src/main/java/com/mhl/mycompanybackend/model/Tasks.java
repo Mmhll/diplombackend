@@ -15,7 +15,7 @@ public class Tasks {
     private Long id;
     private String name;
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "creator_id", referencedColumnName = "id")
+    @JoinColumn(name = "creator_id")
     private Users creator;
     @JsonFormat(pattern = "yyyy-MM-dd")
     private Date creation_date;
@@ -25,7 +25,7 @@ public class Tasks {
     @JsonFormat(pattern = "yyyy-MM-dd")
     private Date deadline;
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "executor_id", referencedColumnName = "id")
+    @JoinColumn(name = "executor_id")
     private Users executor;
     private Long status;
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
