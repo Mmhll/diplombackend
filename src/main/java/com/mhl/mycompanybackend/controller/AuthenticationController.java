@@ -6,6 +6,7 @@ import com.mhl.mycompanybackend.service.AuthenticationService;
 import com.mhl.mycompanybackend.utils.ErrorMessages;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -36,7 +37,7 @@ public class AuthenticationController {
         }
 
     }
-
+    @PreAuthorize("hasAnyRole('EDITUSER, MODERATOR, ADMIN')")
     @PostMapping("/signup")
     public ResponseEntity<?> registerUser(@RequestBody SignupRequest signupRequest) {
         try {

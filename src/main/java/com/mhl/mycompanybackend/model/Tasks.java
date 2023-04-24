@@ -31,16 +31,16 @@ public class Tasks {
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "executor_id")
     private Users executor;
-    private Long status;
+    private String status;
     @JsonManagedReference
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
     @JoinTable(name = "tasks_user",
             joinColumns = @JoinColumn(name = "task_id"),
             inverseJoinColumns = @JoinColumn(name = "user_id")
     )
-    private List<Users> members = new ArrayList<>();
+    private final List<Users> members = new ArrayList<>();
 
-    public Tasks(String name, Users creator, Date creation_date, Date date_of_update, String description, Date deadline, Users executor, Long status) {
+    public Tasks(String name, Users creator, Date creation_date, Date date_of_update, String description, Date deadline, Users executor, String status) {
         this.name = name;
         this.creator = creator;
         this.creation_date = creation_date;
@@ -59,74 +59,9 @@ public class Tasks {
         this.name = name;
     }
 
-    public Users getCreator() {
-        return creator;
-    }
-
-    public void setCreator(Users creator) {
-        this.creator = creator;
-    }
-
-    public Date getCreation_date() {
-        return creation_date;
-    }
-
-    public void setCreation_date(Date creation_date) {
-        this.creation_date = creation_date;
-    }
-
-    public Date getDate_of_update() {
-        return date_of_update;
-    }
-
-    public void setDate_of_update(Date date_of_update) {
-        this.date_of_update = date_of_update;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public Date getDeadline() {
-        return deadline;
-    }
-
-    public void setDeadline(Date deadline) {
-        this.deadline = deadline;
-    }
-
-    public Users getExecutor() {
-        return executor;
-    }
-
-    public void setExecutor(Users executor) {
-        this.executor = executor;
-    }
-
-    public Long getStatus() {
-        return status;
-    }
-
-    public void setStatus(Long status) {
-        this.status = status;
-    }
-
-    public List<Users> getMembers() {
-        return members;
-    }
-
-    public void setMembers(List<Users> members) {
-        this.members = members;
-    }
-
     public Tasks() {
     }
 
-    // Getter and Setter
     public Long getId() {
         return id;
     }

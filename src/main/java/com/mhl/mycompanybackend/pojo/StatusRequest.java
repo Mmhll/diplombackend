@@ -2,7 +2,7 @@ package com.mhl.mycompanybackend.pojo;
 
 public class StatusRequest {
     private Long id;
-    private Long status_id;
+    private String status;
 
     public Long getId() {
         return id;
@@ -12,11 +12,7 @@ public class StatusRequest {
         this.id = id;
     }
 
-    public Long getStatus_id() {
-        return status_id;
-    }
-
-    public void setStatus_id(Long status_id) {
-        this.status_id = status_id;
+    public String getStatus() {
+        return status;
     }
 }
