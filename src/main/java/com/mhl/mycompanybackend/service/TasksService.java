@@ -3,16 +3,10 @@ package com.mhl.mycompanybackend.service;
 import com.mhl.mycompanybackend.model.Tasks;
 import com.mhl.mycompanybackend.model.Users;
 import com.mhl.mycompanybackend.pojo.MessageResponse;
-import com.mhl.mycompanybackend.pojo.StatusRequest;
-import com.mhl.mycompanybackend.pojo.UpdateTaskRequest;
 import com.mhl.mycompanybackend.repository.TasksRepository;
 import com.mhl.mycompanybackend.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
-
-import java.util.List;
 
 @Service
 public class TasksService {
@@ -25,7 +19,7 @@ public class TasksService {
     }
     public ResponseEntity<?> getAllTasks(Long id) {
         Users executor = userRepository.findById(id).orElseThrow(() -> new RuntimeException("User not found"));
-        return ResponseEntity.ok().body(tasksRepository.findAllByExecutorIs(executor));
+        return ResponseEntity.ok().body(tasksRepository.findAllByExecutorEquals(executor));
     }
 
     public ResponseEntity<?> getTask(Long id) {
