@@ -1,5 +1,6 @@
 package com.mhl.mycompanybackend.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
@@ -33,9 +34,11 @@ public class Users {
     @OneToMany(mappedBy = "user")
     List<Message> messages = new ArrayList<>();
 
+    @JsonBackReference
     @OneToMany(mappedBy = "creator")
     List<Tasks> task_creator;
 
+    @JsonBackReference
     @OneToMany(mappedBy = "executor")
     List<Tasks> task_executor;
 

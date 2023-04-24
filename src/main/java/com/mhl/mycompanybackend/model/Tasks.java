@@ -1,6 +1,7 @@
 package com.mhl.mycompanybackend.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -24,10 +25,13 @@ public class Tasks {
     private String description;
     @JsonFormat(pattern = "yyyy-MM-dd")
     private Date deadline;
+
+    @JsonManagedReference
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "executor_id")
     private Users executor;
     private Long status;
+    @JsonManagedReference
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinTable(name = "tasks_user",
             joinColumns = @JoinColumn(name = "task_id"),
