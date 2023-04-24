@@ -33,11 +33,11 @@ public class Users {
     @OneToMany(mappedBy = "user")
     List<Message> messages = new ArrayList<>();
 
-    @OneToOne(mappedBy = "creator")
-    Tasks task_creator;
+    @OneToMany(mappedBy = "creator")
+    List<Tasks> task_creator;
 
-    @OneToOne(mappedBy = "executor")
-    Tasks task_executor;
+    @OneToMany(mappedBy = "executor")
+    List<Tasks> task_executor;
 
     public void setId(Long id) {
         this.id = id;
@@ -51,19 +51,19 @@ public class Users {
         this.messages = messages;
     }
 
-    public Tasks getTask_creator() {
+    public List<Tasks> getTask_creator() {
         return task_creator;
     }
 
-    public void setTask_creator(Tasks task_creator) {
+    public void setTask_creator(List<Tasks> task_creator) {
         this.task_creator = task_creator;
     }
 
-    public Tasks getTask_executor() {
+    public List<Tasks> getTask_executor() {
         return task_executor;
     }
 
-    public void setTask_executor(Tasks task_executor) {
+    public void setTask_executor(List<Tasks> task_executor) {
         this.task_executor = task_executor;
     }
 

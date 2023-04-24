@@ -14,7 +14,7 @@ public class Tasks {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    @OneToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "creator_id", referencedColumnName = "id")
     private Users creator;
     @JsonFormat(pattern = "yyyy-MM-dd")
@@ -24,7 +24,7 @@ public class Tasks {
     private String description;
     @JsonFormat(pattern = "yyyy-MM-dd")
     private Date deadline;
-    @OneToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "executor_id", referencedColumnName = "id")
     private Users executor;
     private Long status;
