@@ -15,6 +15,7 @@ public class Tasks {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
+    @JsonManagedReference
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "creator_id")
     private Users creator;
@@ -31,7 +32,6 @@ public class Tasks {
     @JoinColumn(name = "executor_id")
     private Users executor;
     private Long status;
-    @JsonManagedReference
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
     @JoinTable(name = "tasks_user",
             joinColumns = @JoinColumn(name = "task_id"),
