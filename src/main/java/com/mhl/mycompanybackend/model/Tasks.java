@@ -32,6 +32,7 @@ public class Tasks {
     @JoinColumn(name = "executor_id")
     private Users executor;
     private Long status;
+    @JsonManagedReference
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
     @JoinTable(name = "tasks_user",
             joinColumns = @JoinColumn(name = "task_id"),

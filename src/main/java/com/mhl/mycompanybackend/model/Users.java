@@ -44,6 +44,7 @@ public class Users {
     @OneToMany(mappedBy = "executor")
     List<Tasks> task_executor;
 
+    @JsonBackReference
     @ManyToMany(mappedBy = "members", cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
     private Set<Tasks> tasks = new HashSet<>();
     public void setId(Long id) {
