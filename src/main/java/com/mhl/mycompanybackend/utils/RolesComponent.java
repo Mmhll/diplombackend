@@ -3,9 +3,12 @@ package com.mhl.mycompanybackend.utils;
 import com.mhl.mycompanybackend.model.PermissionName;
 import com.mhl.mycompanybackend.model.Permissions;
 import com.mhl.mycompanybackend.model.Roles;
+import com.mhl.mycompanybackend.pojo.SignupRequest;
 import com.mhl.mycompanybackend.repository.PermissionsRepository;
 import com.mhl.mycompanybackend.repository.RolesRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.mhl.mycompanybackend.repository.UserRepository;
+import com.mhl.mycompanybackend.service.AuthenticationService;
+import com.mhl.mycompanybackend.service.UserService;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
@@ -13,10 +16,17 @@ import org.springframework.stereotype.Component;
 @Component
 public class RolesComponent implements ApplicationRunner {
 
-    @Autowired
-    private PermissionsRepository permissionsRepository;
-    @Autowired
-    private RolesRepository rolesRepository;
+    private final PermissionsRepository permissionsRepository;
+    private final RolesRepository rolesRepository;
+    private final AuthenticationService userService;
+    private final UserRepository userRepository;
+
+    public RolesComponent(PermissionsRepository permissionsRepository, RolesRepository rolesRepository, AuthenticationService service, UserRepository userRepository) {
+        this.permissionsRepository = permissionsRepository;
+        this.rolesRepository = rolesRepository;
+        this.userService = service;
+        this.userRepository = userRepository;
+    }
 
     public void run(ApplicationArguments args) {
         var data = permissionsRepository.findAll();
@@ -35,6 +45,16 @@ public class RolesComponent implements ApplicationRunner {
         if (roles.isEmpty()) {
             rolesRepository.save(new Roles("USER", data.get(0)));
             rolesRepository.save(new Roles("ADMIN", data.get(3)));
+        }
+        var users = userRepository.findAll();
+        if (users.isEmpty()){
+            userService.registerUser(new SignupRequest(
+                "admin@admin.ru",
+                "admin",
+                "admin",
+                "admin",
+                "123"
+            ));
         }
     }
 }

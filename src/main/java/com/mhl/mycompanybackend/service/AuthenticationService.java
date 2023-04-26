@@ -97,6 +97,6 @@ public class AuthenticationService {
         roles.add(userRole);
         user.setRoles(roles);
         userRepository.save(user);
-        return authenticate(new SignInRequest(username, signupRequest.getPassword()));
+        return ResponseEntity.ok().body(new MessageResponse("User was created"));
     }
 }

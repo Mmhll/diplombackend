@@ -32,5 +32,15 @@ public class SignupRequest {
         this.password = password;
     }
 
+    public SignupRequest(String email, String firstname, String lastname, String middlename, String password) {
+        this.email = email;
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.middlename = middlename;
+        this.password = password;
+    }
+
+    public SignupRequest() {
+    }
 }
 
