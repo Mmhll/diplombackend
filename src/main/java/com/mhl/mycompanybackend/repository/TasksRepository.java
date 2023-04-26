@@ -8,13 +8,16 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
 
 @Repository
 public interface TasksRepository extends JpaRepository<Tasks, Long> {
     List<Tasks> findAllByExecutorEquals(Users executor);
+
     List<Tasks> findAllByCreatorEquals(Users creator);
+
     List<Tasks> findAllByMembersContains(Users member);
 
     @Modifying
@@ -23,6 +26,7 @@ public interface TasksRepository extends JpaRepository<Tasks, Long> {
             "SET status = ?2 " +
             "WHERE id = ?1")
     void updateStatus(Long id, String status);
+
     @Modifying
     @Transactional
     @Query(nativeQuery = true, value = "UPDATE tasks " +
@@ -48,4 +52,16 @@ public interface TasksRepository extends JpaRepository<Tasks, Long> {
     @Modifying
     @Query(nativeQuery = true, value = "UPDATE tasks SET executor_id = ?1 WHERE tasks.id = ?2")
     void updateExecutor(Long executor_id, Long task_id);
+
+    @Transactional
+    @Modifying
+    @Query(nativeQuery = true, value = "INSERT INTO tasks(creation_date, deadline, description, name, status, creator_id, executor_id) VALUES " +
+            "(?2, ?5, ?4, ?1, ?7, ?2, ?6)")
+    void saveTask(String task_name, Long creator_id, Date creation_date, String description, Date deadline, Long executor_id, String status);
+
+    @Transactional
+    @Modifying
+    @Query(nativeQuery = true, value = "INSERT INTO tasks_user(task_id, user_id) VALUES " +
+            "((SELECT 1 FROM ), ?2)")
+    void saveTaskUser(Long task_id, Long user_id);
 }

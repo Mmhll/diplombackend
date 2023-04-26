@@ -45,9 +45,9 @@ public class Users {
     @OneToMany(mappedBy = "executor")
     List<Tasks> task_executor;
 
-/*    @JsonManagedReference(value = "task-members")
+/*    @JsonBackReference(value = "task-members")
     @ManyToMany(mappedBy = "members", cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
-    private Set<Tasks> tasks = new HashSet<>();*/
+    private List<Tasks> tasks = new ArrayList<>();*/
     public void setId(Long id) {
         this.id = id;
     }
@@ -91,12 +91,12 @@ public class Users {
         this.email = email;
         this.userData = userData;
     }
-
-/*    public Set<Tasks> getTasks() {
+/*
+    public List<Tasks> getTasks() {
         return tasks;
     }
 
-    public void setTasks(Set<Tasks> tasks) {
+    public void setTasks(List<Tasks> tasks) {
         this.tasks = tasks;
     }*/
 

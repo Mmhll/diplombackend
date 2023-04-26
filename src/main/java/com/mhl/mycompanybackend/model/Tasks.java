@@ -17,7 +17,7 @@ public class Tasks {
     private Long id;
     private String name;
     @JsonBackReference(value = "task-creator")
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "creator_id")
     private Users creator;
     @JsonFormat(pattern = "yyyy-MM-dd")
@@ -29,12 +29,12 @@ public class Tasks {
     private Date deadline;
 
     @JsonBackReference(value = "task-executor")
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "executor_id")
     private Users executor;
     private String status;
-    /*@JsonBackReference(value = "task-members")*/
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+    /*@JsonManagedReference(value = "task-members")*/
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @JoinTable(name = "tasks_user",
             joinColumns = @JoinColumn(name = "task_id"),
             inverseJoinColumns = @JoinColumn(name = "user_id")
