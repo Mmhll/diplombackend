@@ -40,7 +40,7 @@ public class TasksController {
     }
     @PreAuthorize("hasAnyRole('ADMIN', 'MODERATOR', 'EDITUSER')")
     @PostMapping("/save_task")
-    public ResponseEntity<?> saveTask(@RequestBody Tasks task) {
+    public ResponseEntity<?> saveTask(@RequestBody TaskRequest task) {
         return service.saveTask(task);
     }
     @PreAuthorize("hasRole('ADMIN')")

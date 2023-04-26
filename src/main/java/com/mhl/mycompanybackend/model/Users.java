@@ -2,6 +2,7 @@ package com.mhl.mycompanybackend.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -36,17 +37,17 @@ public class Users {
     @OneToMany(mappedBy = "user")
     List<Message> messages = new ArrayList<>();
 
-    @JsonBackReference
+    @JsonManagedReference(value = "task-creator")
     @OneToMany(mappedBy = "creator")
     List<Tasks> task_creator;
 
-    @JsonBackReference
+    @JsonManagedReference(value = "task-executor")
     @OneToMany(mappedBy = "executor")
     List<Tasks> task_executor;
 
-    @JsonBackReference
+/*    @JsonManagedReference(value = "task-members")
     @ManyToMany(mappedBy = "members", cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
-    private Set<Tasks> tasks = new HashSet<>();
+    private Set<Tasks> tasks = new HashSet<>();*/
     public void setId(Long id) {
         this.id = id;
     }
@@ -85,13 +86,19 @@ public class Users {
         this.userData = userData;
     }
 
-    public Set<Tasks> getTasks() {
+    public Users(String username, String email, UserData userData) {
+        this.username = username;
+        this.email = email;
+        this.userData = userData;
+    }
+
+/*    public Set<Tasks> getTasks() {
         return tasks;
     }
 
     public void setTasks(Set<Tasks> tasks) {
         this.tasks = tasks;
-    }
+    }*/
 
     public Long getId() {
         return id;

@@ -1,5 +1,6 @@
 package com.mhl.mycompanybackend.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
@@ -15,7 +16,7 @@ public class Tasks {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    @JsonManagedReference
+    @JsonBackReference(value = "task-creator")
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "creator_id")
     private Users creator;
@@ -27,18 +28,18 @@ public class Tasks {
     @JsonFormat(pattern = "yyyy-MM-dd")
     private Date deadline;
 
-    @JsonManagedReference
+    @JsonBackReference(value = "task-executor")
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "executor_id")
     private Users executor;
     private String status;
-    @JsonManagedReference
+    /*@JsonBackReference(value = "task-members")*/
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
     @JoinTable(name = "tasks_user",
             joinColumns = @JoinColumn(name = "task_id"),
             inverseJoinColumns = @JoinColumn(name = "user_id")
     )
-    private final List<Users> members = new ArrayList<>();
+    private List<Users> members = new ArrayList<>();
 
     public Tasks(String name, Users creator, Date creation_date, Date date_of_update, String description, Date deadline, Users executor, String status) {
         this.name = name;
@@ -49,6 +50,17 @@ public class Tasks {
         this.deadline = deadline;
         this.executor = executor;
         this.status = status;
+    }
+
+    public Tasks(String name, Users creator, Date creation_date, String description, Date deadline, Users executor, String status, List<Users> members) {
+        this.name = name;
+        this.creator = creator;
+        this.creation_date = creation_date;
+        this.description = description;
+        this.deadline = deadline;
+        this.executor = executor;
+        this.status = status;
+        this.members = members;
     }
 
     public String getName() {

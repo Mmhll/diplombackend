@@ -4,6 +4,7 @@ import com.mhl.mycompanybackend.model.Tasks;
 import com.mhl.mycompanybackend.model.Users;
 import com.mhl.mycompanybackend.pojo.MessageResponse;
 import com.mhl.mycompanybackend.pojo.StatusRequest;
+import com.mhl.mycompanybackend.pojo.TaskRequest;
 import com.mhl.mycompanybackend.pojo.UpdateTaskRequest;
 import com.mhl.mycompanybackend.repository.TasksRepository;
 import com.mhl.mycompanybackend.repository.UserRepository;
@@ -53,7 +54,17 @@ public class TasksService {
         }
     }
 
-    public ResponseEntity<MessageResponse> saveTask(Tasks task) {
+    public ResponseEntity<MessageResponse> saveTask(TaskRequest taskRequest) {
+        Tasks task = new Tasks(
+                taskRequest.getTask_name(),
+                taskRequest.getCreator(),
+                taskRequest.getCreation_date(),
+                taskRequest.getDescription(),
+                taskRequest.getDeadline(),
+                taskRequest.getExecutor(),
+                "Новая",
+                taskRequest.getMembers()
+        );
         tasksRepository.save(task);
         return ResponseEntity.ok().body(new MessageResponse("Task was saved"));
     }
