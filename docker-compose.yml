@@ -41,6 +41,7 @@ services:
       - db
     environment:
       - POSTGRES_HOST=db
+      - POSTGRES_PORT=5400
       - POSTGRES_DB=mhl
       - POSTGRES_USER=mhl
       - POSTGRES_PASSWORD=5DrX2kpqfa
