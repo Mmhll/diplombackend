@@ -46,15 +46,20 @@ public class RolesComponent implements ApplicationRunner {
             rolesRepository.save(new Roles("USER", data.get(0)));
             rolesRepository.save(new Roles("ADMIN", data.get(3)));
         }
-        var users = userRepository.findAll();
-        if (users.isEmpty()){
-            userService.registerUser(new SignupRequest(
-                "admin@admin.ru",
-                "admin",
-                "admin",
-                "admin",
-                "123"
-            ));
+        try {
+            var users = userRepository.findAll();
+            if (users.isEmpty()){
+                userService.registerUser(new SignupRequest(
+                        "admin@admin.ru",
+                        "admin",
+                        "admin",
+                        "admin",
+                        "123"
+                ));
+            }
+        } catch (Exception e){
+
         }
+
     }
 }
