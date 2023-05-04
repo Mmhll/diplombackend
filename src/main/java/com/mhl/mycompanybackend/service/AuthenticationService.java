@@ -64,11 +64,7 @@ public class AuthenticationService {
         userDetails.getRoles().forEach(oneRole -> roles.add(oneRole.getRole_name()));
         return ResponseEntity.ok(new JwtResponse
                 (
-                jwt,
-                userDetails.getId(),
-                userDetails.getUsername(),
-                userDetails.getEmail(),
-                roles
+                jwt
                 )
         );
     }
