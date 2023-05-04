@@ -46,8 +46,8 @@ services:
       - POSTGRES_USER=mhl
       - POSTGRES_PASSWORD=5DrX2kpqfa
       - POSTGRES_EXTRA_OPTS=-Z9 --schema=public --blobs
-      - SCHEDULE= @daily
+      - SCHEDULE=0 0 * * 0
       - BACKUP_KEEP_DAYS=7
-      - BACKUP_KEEP_WEEKS=4
-      - BACKUP_KEEP_MONTHS=6
+      - BACKUP_KEEP_WEEKS=2
+      - BACKUP_KEEP_MONTHS=0
       - HEALTHCHECK_PORT=5555

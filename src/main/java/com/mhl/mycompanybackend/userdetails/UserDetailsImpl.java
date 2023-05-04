@@ -2,37 +2,36 @@ package com.mhl.mycompanybackend.userdetails;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.mhl.mycompanybackend.model.Roles;
-import com.mhl.mycompanybackend.model.UserData;
 import com.mhl.mycompanybackend.model.Users;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.io.Serial;
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class UserDetailsImpl implements UserDetails {
 
+    @Serial
     private static final long serialVersionUID = 1L;
 
-    private Long id;
-    private String username;
-    private String email;
+    private final Long id;
+    private final String username;
+    private final String email;
     @JsonIgnore
     private String password;
-    private Collection<? extends GrantedAuthority> authorities;
-    private UserData userData;
-    private List<Roles> roles;
+    private final Collection<? extends GrantedAuthority> authorities;
+    private final List<Roles> roles;
 
     public UserDetailsImpl(Long id, String username, String email, String password,
-                           Collection<? extends GrantedAuthority> authorities, UserData userData, List<Roles> roles) {
+                           Collection<? extends GrantedAuthority> authorities, List<Roles> roles) {
         this.id = id;
         this.username = username;
         this.email = email;
         this.password = password;
         this.authorities = authorities;
-        this.userData = userData;
         this.roles = roles;
     }
 
@@ -46,7 +45,7 @@ public class UserDetailsImpl implements UserDetails {
                 users.getUsername(),
                 users.getEmail(),
                 users.getPassword(),
-                authorities, users.getUserData(), users.getRoles());
+                authorities, users.getRoles());
     }
 
     @Override
@@ -96,10 +95,6 @@ public class UserDetailsImpl implements UserDetails {
         return true;
     }
 
-    public UserData getUserData() {
-        return userData;
-    }
-
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -118,11 +113,8 @@ public class UserDetailsImpl implements UserDetails {
             return false;
         UserDetailsImpl other = (UserDetailsImpl) obj;
         if (id == null) {
-            if (other.id != null)
-                return false;
-        } else if (!id.equals(other.id))
-            return false;
-        return true;
+            return other.id == null;
+        } else return id.equals(other.id);
     }
 
 }

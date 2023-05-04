@@ -62,12 +62,15 @@ public class AuthenticationService {
         UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
         List<String> roles = new ArrayList<>();
         userDetails.getRoles().forEach(oneRole -> roles.add(oneRole.getRole_name()));
-        return ResponseEntity.ok(new JwtResponse(jwt,
+        return ResponseEntity.ok(new JwtResponse
+                (
+                jwt,
                 userDetails.getId(),
                 userDetails.getUsername(),
                 userDetails.getEmail(),
-                roles,
-                userDetails.getUserData()));
+                roles
+                )
+        );
     }
 
     public ResponseEntity<?> registerUser(SignupRequest signupRequest) {
