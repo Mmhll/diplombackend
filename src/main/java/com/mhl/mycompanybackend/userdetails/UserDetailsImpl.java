@@ -2,6 +2,7 @@ package com.mhl.mycompanybackend.userdetails;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.mhl.mycompanybackend.model.Roles;
+import com.mhl.mycompanybackend.model.UserData;
 import com.mhl.mycompanybackend.model.Users;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -24,28 +25,32 @@ public class UserDetailsImpl implements UserDetails {
     private String password;
     private final Collection<? extends GrantedAuthority> authorities;
     private final List<Roles> roles;
+    private final UserData userData;
 
     public UserDetailsImpl(Long id, String username, String email, String password,
-                           Collection<? extends GrantedAuthority> authorities, List<Roles> roles) {
+                           Collection<? extends GrantedAuthority> authorities, List<Roles> roles, UserData userData) {
         this.id = id;
         this.username = username;
         this.email = email;
         this.password = password;
         this.authorities = authorities;
         this.roles = roles;
+        this.userData = userData;
     }
 
     public static UserDetailsImpl build(Users users) {
         List<GrantedAuthority> authorities = users.getRoles().stream()
                 .map(role -> new SimpleGrantedAuthority(role.getPermissions().getName().name()))
                 .collect(Collectors.toList());
-
+        System.out.println(users.getUserData().getFirstname());
         return new UserDetailsImpl(
                 users.getId(),
                 users.getUsername(),
                 users.getEmail(),
                 users.getPassword(),
-                authorities, users.getRoles());
+                authorities, users.getRoles(), users.getUserData());
+
+//
     }
 
     @Override
@@ -69,6 +74,10 @@ public class UserDetailsImpl implements UserDetails {
 
     public String getEmail() {
         return email;
+    }
+
+    public UserData getUserData() {
+        return userData;
     }
 
     @Override
