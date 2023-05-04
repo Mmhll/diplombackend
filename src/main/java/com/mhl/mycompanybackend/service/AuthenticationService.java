@@ -80,8 +80,8 @@ public class AuthenticationService {
         UserData userData = new UserData(
                 signupRequest.getFirstname(),
                 signupRequest.getLastname(),
-                signupRequest.getMiddlename()
-        );
+                signupRequest.getMiddlename(),
+                signupRequest.getPhoneNumber());
         userDataRepository.save(userData);
         userDataRepository.findById(userData.getId());
         Users user = new Users(username,

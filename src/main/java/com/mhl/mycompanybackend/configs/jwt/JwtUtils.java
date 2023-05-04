@@ -29,6 +29,7 @@ public class JwtUtils {
         extraClaims.put("firstname", userPrincipal.getUserData().getFirstname());
         extraClaims.put("lastname", userPrincipal.getUserData().getLastname());
         extraClaims.put("middlename", userPrincipal.getUserData().getMiddlename());
+        extraClaims.put("phone_number", userPrincipal.getUserData().getPhone_number());
         extraClaims.put("roles", userPrincipal.getRoles());
 
         return Jwts.builder()
