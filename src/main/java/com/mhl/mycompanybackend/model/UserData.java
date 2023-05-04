@@ -21,7 +21,7 @@ public class UserData {
         this.firstname = firstname;
         this.lastname = lastname;
         this.middlename = middlename;
-        phone_number = phoneNumber;
+        this.phone_number = phoneNumber;
     }
 
     public UserData() {

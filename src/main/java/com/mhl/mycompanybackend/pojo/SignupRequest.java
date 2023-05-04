@@ -29,11 +29,11 @@ public class SignupRequest {
         return password;
     }
 
-    public String getPhoneNumber() {
+    public String getPhone_number() {
         return phone_number;
     }
 
-    public void setPhoneNumber(String phone_number) {
+    public void setPhone_number(String phone_number) {
         this.phone_number = phone_number;
     }
 
@@ -47,7 +47,7 @@ public class SignupRequest {
         this.lastname = lastname;
         this.middlename = middlename;
         this.password = password;
-        phone_number = phoneNumber;
+        this.phone_number = phoneNumber;
     }
 
     public SignupRequest() {

@@ -76,12 +76,12 @@ public class AuthenticationService {
                     .badRequest()
                     .body(new MessageResponse("Error: Username or email exists"));
         }
-
         UserData userData = new UserData(
                 signupRequest.getFirstname(),
                 signupRequest.getLastname(),
                 signupRequest.getMiddlename(),
-                signupRequest.getPhoneNumber());
+                signupRequest.getPhone_number());
+
         userDataRepository.save(userData);
         userDataRepository.findById(userData.getId());
         Users user = new Users(username,
