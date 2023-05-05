@@ -4,6 +4,8 @@ import com.mhl.mycompanybackend.pojo.SignInRequest;
 import com.mhl.mycompanybackend.pojo.SignupRequest;
 import com.mhl.mycompanybackend.service.AuthenticationService;
 import com.mhl.mycompanybackend.utils.ErrorMessages;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/api/auth")
 @CrossOrigin(origins = "*", maxAge = 3600)
+@Api( tags = "Clients")
 public class AuthenticationController {
 
     final
@@ -28,6 +31,7 @@ public class AuthenticationController {
         this.messages = messages;
     }
 
+    @ApiOperation("dsada")
     @PostMapping("/signin")
     public ResponseEntity<?> authUser(@RequestBody SignInRequest signInRequest) {
         try {
@@ -37,6 +41,7 @@ public class AuthenticationController {
         }
 
     }
+    @ApiOperation("dsada")
     @PostMapping("/signup")
     public ResponseEntity<?> registerUser(@RequestBody SignupRequest signupRequest) {
         try {
