@@ -22,25 +22,21 @@ public class UserController {
         this.userService = userService;
     }
 
-    @ApiOperation("dsada")
     @PutMapping("/update_user_data")
     public ResponseEntity<?> updateUserData(@RequestBody UserRequest request) {
         return userService.setUserData(request);
     }
 
-    @ApiOperation("dsada")
     @PutMapping("/update_user_password")
     public ResponseEntity<?> updateUserPassword(@RequestBody UsernameAndPasswordRequest request) {
         return userService.setUserPassword(request);
     }
 
-    @ApiOperation("dsada")
     @GetMapping("/find_all")
     public ResponseEntity<?> findAllUsers() {
         return userService.findAllUsers();
     }
 
-    @ApiOperation("dsada")
     @DeleteMapping("/delete_user")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<?> deleteUser(@RequestBody OneParamStringRequest request){
