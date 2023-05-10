@@ -25,7 +25,7 @@ public class JwtUtils {
         extraClaims.put("id", userPrincipal.getId());
         extraClaims.put("username", userPrincipal.getUsername());
         extraClaims.put("email", userPrincipal.getEmail());
-        extraClaims.put("initials", userPrincipal.getUserData().getFirstname());
+        extraClaims.put("firstname", userPrincipal.getUserData().getFirstname());
         extraClaims.put("lastname", userPrincipal.getUserData().getLastname());
         extraClaims.put("middlename", userPrincipal.getUserData().getMiddlename());
         extraClaims.put("phone_number", userPrincipal.getUserData().getPhone_number());
