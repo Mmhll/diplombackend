@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/api/auth")
 @CrossOrigin(origins = "*", maxAge = 3600)
-@Api( tags = "Clients")
+@Api( tags = "Auth")
 public class AuthenticationController {
 
     final
@@ -30,8 +30,7 @@ public class AuthenticationController {
         this.authenticationService = authenticationService;
         this.messages = messages;
     }
-
-    @ApiOperation("dsada")
+    
     @PostMapping("/signin")
     public ResponseEntity<?> authUser(@RequestBody SignInRequest signInRequest) {
         try {
@@ -41,7 +40,7 @@ public class AuthenticationController {
         }
 
     }
-    @ApiOperation("dsada")
+    
     @PostMapping("/signup")
     public ResponseEntity<?> registerUser(@RequestBody SignupRequest signupRequest) {
         try {

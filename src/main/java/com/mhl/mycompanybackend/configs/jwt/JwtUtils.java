@@ -22,7 +22,7 @@ public class JwtUtils {
 
         UserDetailsImpl userPrincipal = (UserDetailsImpl) authentication.getPrincipal();
         Map<String, Object> extraClaims = new HashMap<>();
-        extraClaims.put("id", userPrincipal.getId());
+        extraClaims.put("user_id", userPrincipal.getId());
         extraClaims.put("username", userPrincipal.getUsername());
         extraClaims.put("email", userPrincipal.getEmail());
         extraClaims.put("initials", userPrincipal.getUserData().getFirstname());

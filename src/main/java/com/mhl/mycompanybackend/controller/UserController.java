@@ -6,6 +6,7 @@ import com.mhl.mycompanybackend.pojo.UsernameAndPasswordRequest;
 import com.mhl.mycompanybackend.service.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.Authorization;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -13,7 +14,8 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/api/user")
 @CrossOrigin(origins = "*", maxAge = 3600)
-@Api( tags = "Clients")
+@Api( tags = "User")
+@ApiOperation(value = "", authorizations = { @Authorization(value="jwtToken") })
 public class UserController {
     final
     UserService userService;
@@ -22,25 +24,25 @@ public class UserController {
         this.userService = userService;
     }
 
-    @ApiOperation("dsada")
+    
     @PutMapping("/update_user_data")
     public ResponseEntity<?> updateUserData(@RequestBody UserRequest request) {
         return userService.setUserData(request);
     }
 
-    @ApiOperation("dsada")
+    
     @PutMapping("/update_user_password")
     public ResponseEntity<?> updateUserPassword(@RequestBody UsernameAndPasswordRequest request) {
         return userService.setUserPassword(request);
     }
 
-    @ApiOperation("dsada")
+    
     @GetMapping("/find_all")
     public ResponseEntity<?> findAllUsers() {
         return userService.findAllUsers();
     }
 
-    @ApiOperation("dsada")
+    
     @DeleteMapping("/delete_user")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<?> deleteUser(@RequestBody OneParamStringRequest request){
