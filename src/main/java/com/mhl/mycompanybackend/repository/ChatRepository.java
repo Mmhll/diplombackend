@@ -1,6 +1,7 @@
 package com.mhl.mycompanybackend.repository;
 
 import com.mhl.mycompanybackend.model.Chat;
+import com.mhl.mycompanybackend.model.Users;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -18,8 +19,10 @@ public interface ChatRepository extends JpaRepository<Chat, Long> {
 
     @Transactional
     @Modifying
-    @Query(nativeQuery = true, value = "SELECT * FROM chat WHERE (SELECT chat_id FROM chat_user WHERE user_id = ?1) = chat.id;")
+    @Query(nativeQuery = true, value = "SELECT * FROM chat WHERE (SELECT chat_id FROM chat_user WHERE user_id = ?1) = chat.id")
     List<Chat> getChatsByUserId(Long id);
+
+    List<Chat> findAllByUsers(Users user);
 
     @Transactional
     @Modifying

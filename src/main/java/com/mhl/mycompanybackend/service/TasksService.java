@@ -2,14 +2,13 @@ package com.mhl.mycompanybackend.service;
 
 import com.mhl.mycompanybackend.model.Tasks;
 import com.mhl.mycompanybackend.model.Users;
-import com.mhl.mycompanybackend.pojo.MessageResponse;
-import com.mhl.mycompanybackend.pojo.StatusRequest;
-import com.mhl.mycompanybackend.pojo.TaskRequest;
-import com.mhl.mycompanybackend.pojo.UpdateTaskRequest;
+import com.mhl.mycompanybackend.pojo.*;
 import com.mhl.mycompanybackend.repository.TasksRepository;
 import com.mhl.mycompanybackend.repository.UserRepository;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
 
 @Service
 public class TasksService {
@@ -55,24 +54,27 @@ public class TasksService {
     }
 
     public ResponseEntity<MessageResponse> saveTask(TaskRequest taskRequest) {
-
+        ArrayList<Users> members = new ArrayList<>();
+        taskRequest.getMembers().forEach(member -> {
+            members.add(userRepository.findById(member).get());
+        });
         Tasks task = new Tasks(
                 taskRequest.getTask_name(),
-                taskRequest.getCreator(),
+                userRepository.findById(taskRequest.getCreator_id()).get(),
                 taskRequest.getCreation_date(),
                 taskRequest.getDescription(),
                 taskRequest.getDeadline(),
-                taskRequest.getExecutor(),
+                userRepository.findById(taskRequest.getExecutor_id()).get(),
                 "Новая",
-                taskRequest.getMembers()
+                members
         );
         tasksRepository.save(task);
         return ResponseEntity.ok().body(new MessageResponse("Task was saved"));
     }
 
-    public ResponseEntity<MessageResponse> deleteTaskById(Long id){
+    public ResponseEntity<MessageResponse> deleteTaskById(IdRequest id){
         try {
-            tasksRepository.deleteById(id);
+            tasksRepository.deleteById(id.getId());
             return ResponseEntity.ok().body(new MessageResponse("Task was deleted"));
         } catch (Exception e){
             return ResponseEntity.badRequest().body(new MessageResponse("Task not found or something went wrong"));

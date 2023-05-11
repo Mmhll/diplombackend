@@ -8,14 +8,14 @@ import java.util.List;
 
 public class TaskRequest {
     String task_name;
-    Users creator;
+    Long creator_id;
     @JsonFormat(pattern = "yyyy-MM-dd")
     private Date creation_date;
     private String description;
     @JsonFormat(pattern = "yyyy-MM-dd")
     private Date deadline;
-    Users executor;
-    List<Users> members;
+    Long executor_id;
+    List<Long> members;
 
     public String getTask_name() {
         return task_name;
@@ -23,14 +23,6 @@ public class TaskRequest {
 
     public void setTask_name(String task_name) {
         this.task_name = task_name;
-    }
-
-    public Users getCreator() {
-        return creator;
-    }
-
-    public void setCreator(Users creator) {
-        this.creator = creator;
     }
 
     public Date getCreation_date() {
@@ -57,19 +49,27 @@ public class TaskRequest {
         this.deadline = deadline;
     }
 
-    public Users getExecutor() {
-        return executor;
+    public Long getCreator_id() {
+        return creator_id;
     }
 
-    public void setExecutor(Users executor) {
-        this.executor = executor;
+    public void setCreator_id(Long creator_id) {
+        this.creator_id = creator_id;
     }
 
-    public List<Users> getMembers() {
+    public Long getExecutor_id() {
+        return executor_id;
+    }
+
+    public void setExecutor_id(Long executor_id) {
+        this.executor_id = executor_id;
+    }
+
+    public List<Long> getMembers() {
         return members;
     }
 
-    public void setMembers(List<Users> members) {
+    public void setMembers(List<Long> members) {
         this.members = members;
     }
 }

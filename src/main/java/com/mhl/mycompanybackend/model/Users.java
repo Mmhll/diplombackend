@@ -1,6 +1,7 @@
 package com.mhl.mycompanybackend.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
@@ -37,7 +38,7 @@ public class Users {
     @JsonManagedReference(value = "task-creator")
     @OneToMany(mappedBy = "creator")
     List<Tasks> task_creator;
-
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     @JsonManagedReference(value = "task-executor")
     @OneToMany(mappedBy = "executor")
     List<Tasks> task_executor;

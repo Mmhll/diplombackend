@@ -59,7 +59,7 @@ public class TasksController {
     
     @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/delete_task")
-    public ResponseEntity<MessageResponse> deleteTask(@RequestBody Long id) {
+    public ResponseEntity<MessageResponse> deleteTask(@RequestBody IdRequest id) {
         return service.deleteTaskById(id);
     }
 
