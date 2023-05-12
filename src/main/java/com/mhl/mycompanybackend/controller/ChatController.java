@@ -50,13 +50,13 @@ public class ChatController {
     
     @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/delete_chat_member")
-    public ResponseEntity<MessageResponse> deleteChatMember(UserIdChatIdRequest request){
+    public ResponseEntity<MessageResponse> deleteChatMember(@RequestBody UserIdChatIdRequest request){
         return service.deleteChatMember(request);
     }
     
     @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/delete_chat_member")
-    public ResponseEntity<MessageResponse> addChatMember(UserIdChatIdRequest request){
+    public ResponseEntity<MessageResponse> addChatMember(@RequestBody UserIdChatIdRequest request){
         return service.addChatMember(request);
     }
 }

@@ -1,7 +1,7 @@
 package com.mhl.mycompanybackend.pojo;
 
 public class IdRequest {
-    Long id;
+    private Long id;
 
     public Long getId() {
         return id;
