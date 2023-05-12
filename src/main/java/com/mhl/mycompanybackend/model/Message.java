@@ -1,5 +1,7 @@
 package com.mhl.mycompanybackend.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.sql.Timestamp;
 
@@ -7,23 +9,27 @@ import java.sql.Timestamp;
 @Table(name = "message")
 public class Message {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String text;
+    @Column(name = "created_at", nullable = false, updatable = false, insertable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     private Timestamp created_at;
     private boolean is_updated = false;
-    @ManyToOne(fetch = FetchType.LAZY)
+
+    @JsonBackReference(value = "message-user")
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     @JoinColumn(name = "user_id")
     Users user;
 
-    public Message(String text, Timestamp created_at, boolean is_updated) {
+    public Message(String text, Users user) {
         this.text = text;
-        this.created_at = created_at;
-        this.is_updated = is_updated;
+        this.user = user;
     }
 
     public Message() {
 
     }
+
 
     public void setId(Long id) {
         this.id = id;

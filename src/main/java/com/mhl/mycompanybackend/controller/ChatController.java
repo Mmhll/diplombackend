@@ -47,6 +47,9 @@ public class ChatController {
         return service.getChats(id);
     }
 
+    @GetMapping("/get_chat")
+    public ResponseEntity<?> getChat(@RequestParam String id) {return service.getChat(id);}
+
     
     @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/delete_chat_member")

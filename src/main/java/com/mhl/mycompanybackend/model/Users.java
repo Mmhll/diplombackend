@@ -32,6 +32,7 @@ public class Users {
     @OneToOne(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private UserData userData;
+    @JsonManagedReference(value = "message-user")
     @OneToMany(mappedBy = "user")
     List<Message> messages = new ArrayList<>();
 

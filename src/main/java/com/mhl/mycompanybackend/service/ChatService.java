@@ -85,4 +85,12 @@ public class ChatService {
             return ResponseEntity.badRequest().body(new MessageResponse("User not found or something went wrong"));
         }
     }
+
+    public ResponseEntity<?> getChat(String id){
+        try {
+            return ResponseEntity.ok().body(chatRepository.findById(Long.parseLong(id)).get());
+        } catch (Exception e){
+            return ResponseEntity.badRequest().body(new MessageResponse("Something went wrong or chat doesn't exists"));
+        }
+    }
 }

@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 @Repository
@@ -16,11 +17,6 @@ public interface ChatRepository extends JpaRepository<Chat, Long> {
     @Modifying
     @Query(nativeQuery = true, value = "UPDATE chat SET title = ?2 WHERE id = ?1")
     void updateChatByName(Long id, String title);
-
-    @Transactional
-    @Modifying
-    @Query(nativeQuery = true, value = "SELECT * FROM chat WHERE (SELECT chat_id FROM chat_user WHERE user_id = ?1) = chat.id")
-    List<Chat> getChatsByUserId(Long id);
 
     List<Chat> findAllByUsers(Users user);
 
@@ -33,4 +29,10 @@ public interface ChatRepository extends JpaRepository<Chat, Long> {
     @Modifying
     @Query(nativeQuery = true, value = "INSERT INTO chat_user(chat_id, user_id) VALUES (?1, ?2)")
     void addUserToChat(Long chatId, Long userId);
+
+    @Transactional
+    @Modifying
+    @Query(nativeQuery = true, value = "UPDATE chat SET " +
+            "updated_at = ?1 WHERE id = ?2")
+    void updateChatDate(Timestamp datetime, Long chat_id);
 }
