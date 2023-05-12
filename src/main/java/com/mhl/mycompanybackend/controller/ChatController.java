@@ -43,8 +43,8 @@ public class ChatController {
 
     
     @GetMapping("/get_chats")
-    public ResponseEntity<?> getChats(@RequestBody IdRequest request){
-        return service.getChats(request);
+    public ResponseEntity<?> getChats(@RequestParam String id){
+        return service.getChats(id);
     }
 
     
