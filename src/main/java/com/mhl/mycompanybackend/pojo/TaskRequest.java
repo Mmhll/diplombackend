@@ -1,7 +1,6 @@
 package com.mhl.mycompanybackend.pojo;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.mhl.mycompanybackend.model.Users;
 
 import java.util.Date;
 import java.util.List;

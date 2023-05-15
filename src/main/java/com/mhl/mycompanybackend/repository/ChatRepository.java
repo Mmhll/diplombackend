@@ -18,7 +18,7 @@ public interface ChatRepository extends JpaRepository<Chat, Long> {
     @Query(nativeQuery = true, value = "UPDATE chat SET title = ?2 WHERE id = ?1")
     void updateChatByName(Long id, String title);
 
-    List<Chat> findAllByUsersOrOrderByUpdated_atDesc(Users user);
+    List<Chat> findChatsByUsersOrderByUpdatedAtDescCreatedAtDesc(Users user);
 
     @Transactional
     @Modifying

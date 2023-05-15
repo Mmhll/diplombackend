@@ -62,7 +62,7 @@ public class ChatService {
     public ResponseEntity<?> getChats(String id) {
         /*try {*/
 
-        return ResponseEntity.ok().body(chatRepository.findAllByUsersOrOrderByUpdated_atDesc(userRepository.findById(Long.parseLong(id)).orElseThrow(() -> new RuntimeException("user not found"))));
+        return ResponseEntity.ok().body(chatRepository.findChatsByUsersOrderByUpdatedAtDescCreatedAtDesc(userRepository.findById(Long.parseLong(id)).orElseThrow(() -> new RuntimeException("user not found"))));
         /*} catch (Exception e){
             return ResponseEntity.badRequest().body(new MessageResponse("No chats found"));
         }*/

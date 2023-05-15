@@ -6,7 +6,6 @@ import com.mhl.mycompanybackend.pojo.UserRequest;
 import com.mhl.mycompanybackend.pojo.UsernameAndPasswordRequest;
 import com.mhl.mycompanybackend.repository.UserDataRepository;
 import com.mhl.mycompanybackend.repository.UserRepository;
-import com.mhl.mycompanybackend.userdetails.UserDetailsImpl;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;

@@ -16,8 +16,9 @@ public class Chat {
     private Long id;
     private String title;
     @Column(name = "created_at", nullable = false, updatable = false, insertable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
-    private Timestamp created_at;
-    private Timestamp updated_at;
+    private Timestamp createdAt;
+    @Column(name = "updated_at")
+    private Timestamp updatedAt;
     @LazyCollection(LazyCollectionOption.FALSE)
     @ManyToMany(cascade = CascadeType.MERGE)
     @JoinTable(name = "chat_message",
@@ -58,20 +59,20 @@ public class Chat {
         this.title = title;
     }
 
-    public Timestamp getCreated_at() {
-        return created_at;
+    public Timestamp getCreatedAt() {
+        return createdAt;
     }
 
-    public void setCreated_at(Timestamp created_at) {
-        this.created_at = created_at;
+    public void setCreatedAt(Timestamp created_at) {
+        this.createdAt = created_at;
     }
 
-    public Timestamp getUpdated_at() {
-        return updated_at;
+    public Timestamp getUpdatedAt() {
+        return updatedAt;
     }
 
-    public void setUpdated_at(Timestamp updated_at) {
-        this.updated_at = updated_at;
+    public void setUpdatedAt(Timestamp updated_at) {
+        this.updatedAt = updated_at;
     }
 
     public List<Message> getMessages() {

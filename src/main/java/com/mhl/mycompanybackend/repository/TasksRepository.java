@@ -8,7 +8,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
 
@@ -62,6 +61,6 @@ public interface TasksRepository extends JpaRepository<Tasks, Long> {
     @Transactional
     @Modifying
     @Query(nativeQuery = true, value = "INSERT INTO tasks_user(task_id, user_id) VALUES " +
-            "((SELECT 1 FROM ), ?2)")
+            "((SELECT DISTINCT id FROM tasks ORDER BY id DESC), ?2)")
     void saveTaskUser(Long task_id, Long user_id);
 }
