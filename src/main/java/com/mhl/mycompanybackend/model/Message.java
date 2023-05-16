@@ -1,6 +1,7 @@
 package com.mhl.mycompanybackend.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
@@ -16,7 +17,7 @@ public class Message {
     private Timestamp created_at;
     private boolean is_updated = false;
 
-    @JsonBackReference(value = "message-user")
+    @JsonManagedReference(value = "message-user")
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     @JoinColumn(name = "user_id")
     Users user;

@@ -1,5 +1,6 @@
 package com.mhl.mycompanybackend.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -32,7 +33,7 @@ public class Users {
     @OneToOne(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private UserData userData;
-    @JsonManagedReference(value = "message-user")
+    @JsonBackReference(value = "message-user")
     @OneToMany(mappedBy = "user")
     List<Message> messages = new ArrayList<>();
 
