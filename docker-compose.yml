@@ -14,7 +14,7 @@ services:
       - SPRING_DATASOURCE_PASSWORD=5DrX2kpqfa
       - SPRING_JPA_HIBERNATE_DDL_AUTO=update
     ports:
-      - "8000:8000"
+      - "8001:8001"
 
   db:
     image: 'postgres:14.7-alpine'

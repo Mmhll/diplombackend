@@ -40,7 +40,7 @@ public class AuthenticationController {
         }
 
     }
-    
+    @PreAuthorize("hasAnyRole('ADMIN', 'EDITUSER', 'MODERATOR', 'USER')") 
     @PostMapping("/signup")
     public ResponseEntity<?> registerUser(@RequestBody SignupRequest signupRequest) {
         try {
