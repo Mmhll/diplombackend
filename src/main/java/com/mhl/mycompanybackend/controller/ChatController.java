@@ -52,7 +52,7 @@ public class ChatController {
 
     
     @PreAuthorize("hasRole('ADMIN')")
-    @DeleteMapping("/delete_chat_member")
+    @DeleteMapping("/add_chat_member")
     public ResponseEntity<MessageResponse> deleteChatMember(@RequestBody UserIdChatIdRequest request){
         return service.deleteChatMember(request);
     }
