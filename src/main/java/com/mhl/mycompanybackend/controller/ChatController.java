@@ -52,13 +52,13 @@ public class ChatController {
 
     
     @PreAuthorize("hasRole('ADMIN')")
-    @DeleteMapping("/add_chat_member")
+    @DeleteMapping("/delete_chat_member")
     public ResponseEntity<MessageResponse> deleteChatMember(@RequestBody UserIdChatIdRequest request){
         return service.deleteChatMember(request);
     }
     
-    @PreAuthorize("hasRole('ADMIN')")
-    @PostMapping("/delete_chat_member")
+    @PreAuthorize("hasAnyRole('ADMIN', 'EDITUSER', 'MODERATOR')")
+    @PostMapping("/add_chat_member")
     public ResponseEntity<MessageResponse> addChatMember(@RequestBody UserIdChatIdRequest request){
         return service.addChatMember(request);
     }
