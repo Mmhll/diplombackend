@@ -29,7 +29,10 @@ public class JwtUtils {
         extraClaims.put("lastname", userPrincipal.getUserData().getLastname());
         extraClaims.put("middlename", userPrincipal.getUserData().getMiddlename());
         extraClaims.put("phone_number", userPrincipal.getUserData().getPhone_number());
-        extraClaims.put("roles", userPrincipal.getRoles());
+        extraClaims.put("roles", userPrincipal.getRoles().get(0).getRole_name());
+        extraClaims.put("permission", userPrincipal.getRoles().get(0).getPermissions().getName());
+        
+        
         return Jwts.builder()
                 .setSubject((userPrincipal.getUsername())).setIssuedAt(new Date())
                 .addClaims(extraClaims)
