@@ -37,17 +37,17 @@ public class Users {
     @OneToMany(mappedBy = "user")
     List<Message> messages = new ArrayList<>();
 
-    @JsonManagedReference(value = "task-creator")
+    @JsonBackReference(value = "task-creator")
     @OneToMany(mappedBy = "creator")
     List<Tasks> task_creator;
-    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-    @JsonManagedReference(value = "task-executor")
+    /*@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})*/
+    @JsonBackReference(value = "task-executor")
     @OneToMany(mappedBy = "executor")
     List<Tasks> task_executor;
 
-/*    @JsonBackReference(value = "task-members")
+    @JsonBackReference(value = "task-members")
     @ManyToMany(mappedBy = "members", cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
-    private List<Tasks> tasks = new ArrayList<>();*/
+    private List<Tasks> tasks = new ArrayList<>();
     public void setId(Long id) {
         this.id = id;
     }

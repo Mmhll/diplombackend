@@ -44,8 +44,8 @@ public class TasksController {
 
     
     @GetMapping("/get_task")
-    public ResponseEntity<?> getTask(@RequestBody Long id) {
-        return service.getTask(id);
+    public ResponseEntity<?> getTask(@RequestParam String id) {
+        return service.getTask(Long.parseLong(id));
     }
 
     

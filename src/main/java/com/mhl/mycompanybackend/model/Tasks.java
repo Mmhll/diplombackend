@@ -2,6 +2,7 @@ package com.mhl.mycompanybackend.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -15,7 +16,7 @@ public class Tasks {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    @JsonBackReference(value = "task-creator")
+    @JsonManagedReference(value = "task-creator")
     @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "creator_id")
     private Users creator;
@@ -27,12 +28,12 @@ public class Tasks {
     @JsonFormat(pattern = "yyyy-MM-dd")
     private Date deadline;
 
-    @JsonBackReference(value = "task-executor")
+    @JsonManagedReference(value = "task-executor")
     @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "executor_id")
     private Users executor;
     private String status;
-    /*@JsonManagedReference(value = "task-members")*/
+    @JsonManagedReference(value = "task-members")
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @JoinTable(name = "tasks_user",
             joinColumns = @JoinColumn(name = "task_id"),
