@@ -26,20 +26,20 @@ public class TasksController {
 
     
     @GetMapping("/get_all_tasks_executor")
-    public ResponseEntity<?> getAllTasksExecutor(@RequestBody IdRequest request) {
-        return service.getAllTasksWhereExecutor(request.getId());
+    public ResponseEntity<?> getAllTasksExecutor(@RequestParam String id) {
+        return service.getAllTasksWhereExecutor(Long.parseLong(id));
     }
 
     
     @GetMapping("/get_all_tasks_creator")
-    public ResponseEntity<?> getAllTasksCreator(@RequestBody IdRequest request) {
-        return service.getAllTasksWhereCreator(request.getId());
+    public ResponseEntity<?> getAllTasksCreator(@RequestParam String id) {
+        return service.getAllTasksWhereCreator(Long.parseLong(id));
     }
 
     
     @GetMapping("/get_all_tasks_member")
-    public ResponseEntity<?> getAllTasksMember(@RequestBody IdRequest request) {
-        return service.getAllTasksWhereMember(request.getId());
+    public ResponseEntity<?> getAllTasksMember(@RequestParam String id) {
+        return service.getAllTasksWhereMember(Long.parseLong(id));
     }
 
     
