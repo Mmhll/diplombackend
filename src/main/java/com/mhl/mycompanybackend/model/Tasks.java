@@ -27,12 +27,12 @@ public class Tasks {
     private String description;
     @JsonFormat(pattern = "yyyy-MM-dd")
     private Date deadline;
+    private String status;
 
     @JsonManagedReference(value = "task-executor")
     @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "executor_id")
     private Users executor;
-    private String status;
     @JsonManagedReference(value = "task-members")
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @JoinTable(name = "tasks_user",
@@ -69,6 +69,14 @@ public class Tasks {
 
     public void setName(String name) {
         this.name = name;
+    }
+    
+    public String getStatus() {
+        return status;   
+    }
+    
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public Tasks() {
