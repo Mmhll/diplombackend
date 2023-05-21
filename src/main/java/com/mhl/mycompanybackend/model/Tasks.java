@@ -88,4 +88,16 @@ public class Tasks {
     public void setId(Long id) {
         this.id = id;
     }
+
+    public Users getCreator() {
+        return creator;
+    }
+
+    public Users getExecutor() {
+        return executor;
+    }
+
+    public List<Users> getMembers() {
+        return members;
+    }
 }

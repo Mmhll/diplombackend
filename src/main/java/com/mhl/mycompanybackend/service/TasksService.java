@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 @Service
 public class TasksService {
@@ -104,18 +105,30 @@ public class TasksService {
 
     public ResponseEntity<MessageResponse> addMember(Long member_id, Long task_id) {
         try {
-            tasksRepository.getTasksUser(task_id, member_id).get();
-            return ResponseEntity.badRequest().body(new MessageResponse("User already is member of task"));
-        } catch (Exception e) {
-//            try {
-                userRepository.findById(member_id).get();
-                tasksRepository.findById(task_id).get();
-                tasksRepository.addMemberToTask(task_id, member_id);
-                return ResponseEntity.ok().body(new MessageResponse("User was added to task"));
-/*            } catch (Exception ex) {
-                return ResponseEntity.badRequest().body(new MessageResponse("User or task doesn't exists"));
-            }*/
+            Tasks task = tasksRepository.findById(task_id).get();
+            boolean exists = false;
+            if (!task.getMembers().isEmpty()) {
+                for (int i = 0; i < task.getMembers().size(); i++) {
+                    if (Objects.equals(task.getMembers().get(i).getId(), member_id)) {
+                        exists = true;
+                        break;
+                    }
+                }
+            }
+            if (exists) {
+                return ResponseEntity.badRequest().body(new MessageResponse("User already is member of task"));
+            } else {
+                try {
+                    userRepository.findById(member_id).get();
+                    tasksRepository.addMemberToTask(task_id, member_id);
+                    return ResponseEntity.ok().body(new MessageResponse("User was added to task"));
+                } catch (Exception ex){
+                    return ResponseEntity.badRequest().body(new MessageResponse("User doesn't exists"));
 
+                }
+            }
+        } catch (Exception e){
+            return ResponseEntity.badRequest().body(new MessageResponse("Task doesn't exists"));
         }
 
     }
