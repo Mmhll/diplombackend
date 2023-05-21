@@ -31,7 +31,7 @@ public interface TasksRepository extends JpaRepository<Tasks, Long> {
     @Query(nativeQuery = true, value = "UPDATE tasks " +
             "SET name = ?2, description = ?3, deadline = ?4 " +
             "WHERE id = ?1")
-    void updateTask(Long id, String name, String description, Date deadline);
+    void updateTask(Long task_id, String name, String description, Date deadline);
 
     @Modifying
     @Transactional

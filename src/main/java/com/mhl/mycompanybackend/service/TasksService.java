@@ -92,7 +92,7 @@ public class TasksService {
 
     public ResponseEntity<MessageResponse> updateTask(UpdateTaskRequest request){
         try{
-            tasksRepository.updateTask(request.getExecutor_id(), request.getName(), request.getDescription(), request.getDeadline());
+            tasksRepository.updateTask(request.getTask_id(), request.getName(), request.getDescription(), request.getDeadline());
             return ResponseEntity.ok().body(new MessageResponse("Task was updated"));
         } catch (Exception e){
             return ResponseEntity.badRequest().body(new MessageResponse("Task not found or something went wrong"));
