@@ -55,9 +55,7 @@ public class TasksService {
 
     public ResponseEntity<MessageResponse> saveTask(TaskRequest taskRequest) {
         ArrayList<Users> members = new ArrayList<>();
-        taskRequest.getMembers().forEach(member -> {
-            members.add(userRepository.findById(member).get());
-        });
+        taskRequest.getMembers().forEach(member -> members.add(userRepository.findById(member).get()));
         Tasks task = new Tasks(
                 taskRequest.getTask_name(),
                 userRepository.findById(taskRequest.getCreator_id()).get(),
@@ -75,7 +73,7 @@ public class TasksService {
     public ResponseEntity<MessageResponse> deleteTaskById(IdRequest id){
         try {
             Tasks task = tasksRepository.findById(id.getId()).get();
-            tasksRepository.delete(task);
+            tasksRepository.deleteById(task.getId());
             return ResponseEntity.ok().body(new MessageResponse("Task was deleted"));
         } catch (Exception e){
             return ResponseEntity.badRequest().body(new MessageResponse("Task not found or something went wrong"));
