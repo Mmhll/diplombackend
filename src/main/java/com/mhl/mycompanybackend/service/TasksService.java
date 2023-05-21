@@ -74,7 +74,8 @@ public class TasksService {
 
     public ResponseEntity<MessageResponse> deleteTaskById(IdRequest id){
         try {
-            tasksRepository.deleteById(id.getId());
+            Tasks task = tasksRepository.findById(id.getId()).get();
+            tasksRepository.delete(task);
             return ResponseEntity.ok().body(new MessageResponse("Task was deleted"));
         } catch (Exception e){
             return ResponseEntity.badRequest().body(new MessageResponse("Task not found or something went wrong"));
