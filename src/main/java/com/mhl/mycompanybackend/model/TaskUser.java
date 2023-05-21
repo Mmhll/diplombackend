@@ -5,10 +5,11 @@ import org.springframework.context.annotation.Primary;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "tasks")
-public class TaskUser {
+public class TaskUser implements Serializable {
     @Id
     private Long task_id;
     @Id
