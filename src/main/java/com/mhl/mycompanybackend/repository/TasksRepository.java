@@ -1,5 +1,6 @@
 package com.mhl.mycompanybackend.repository;
 
+import com.mhl.mycompanybackend.model.TaskUser;
 import com.mhl.mycompanybackend.model.Tasks;
 import com.mhl.mycompanybackend.model.Users;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -10,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface TasksRepository extends JpaRepository<Tasks, Long> {
@@ -45,7 +47,7 @@ public interface TasksRepository extends JpaRepository<Tasks, Long> {
 
     @Transactional
     @Query(nativeQuery = true, value = "SELECT * FROM tasks_user WHERE task_id = ?1 AND user_id = ?2")
-    void getTasksUser(Long task_id, Long user_id);
+    Optional<TaskUser> getTasksUser(Long task_id, Long user_id);
 
     @Transactional
     @Modifying
