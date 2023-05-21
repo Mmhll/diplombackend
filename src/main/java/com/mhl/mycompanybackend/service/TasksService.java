@@ -1,6 +1,5 @@
 package com.mhl.mycompanybackend.service;
 
-import com.mhl.mycompanybackend.model.TaskUser;
 import com.mhl.mycompanybackend.model.Tasks;
 import com.mhl.mycompanybackend.model.Users;
 import com.mhl.mycompanybackend.pojo.*;
@@ -136,10 +135,23 @@ public class TasksService {
 
     public ResponseEntity<MessageResponse> deleteMember(Long memberId, Long taskId) {
         try {
-            tasksRepository.deleteMemberFromTask(memberId, taskId);
-            return ResponseEntity.ok().body(new MessageResponse("User was deleted from task"));
+            Tasks task = tasksRepository.findById(taskId).get();
+            boolean exists = false;
+            if (!task.getMembers().isEmpty()) {
+                for (int i = 0; i < task.getMembers().size(); i++) {
+                    if (Objects.equals(task.getMembers().get(i).getId(), memberId)) {
+                        exists = true;
+                        break;
+                    }
+                }
+            }
+            if (exists) {
+                tasksRepository.deleteMemberFromTask(memberId, taskId);
+                return ResponseEntity.ok().body(new MessageResponse("User was deleted from task"));
+            }
+            return ResponseEntity.badRequest().body(new MessageResponse("User doesn't exists"));
         } catch (Exception e) {
-            return ResponseEntity.badRequest().body(new MessageResponse("User or task doesn't exists"));
+            return ResponseEntity.badRequest().body(new MessageResponse("Task doesn't exists"));
         }
     }
 

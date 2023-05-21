@@ -1,6 +1,5 @@
 package com.mhl.mycompanybackend.repository;
 
-import com.mhl.mycompanybackend.model.TaskUser;
 import com.mhl.mycompanybackend.model.Tasks;
 import com.mhl.mycompanybackend.model.Users;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -11,7 +10,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 
 @Repository
 public interface TasksRepository extends JpaRepository<Tasks, Long> {
@@ -45,26 +43,12 @@ public interface TasksRepository extends JpaRepository<Tasks, Long> {
     @Query(nativeQuery = true, value = "INSERT INTO tasks_user(task_id, user_id) VALUES (?1, ?2)")
     void addMemberToTask(Long task_id, Long user_id);
 
-    @Transactional
-    @Query(nativeQuery = true, value = "SELECT * FROM tasks_user WHERE task_id = ?1 AND user_id = ?2")
-    Optional<TaskUser> getTasksUser(Long task_id, Long user_id);
 
     @Transactional
     @Modifying
     @Query(nativeQuery = true, value = "UPDATE tasks SET executor_id = ?1 WHERE tasks.id = ?2")
     void updateExecutor(Long executor_id, Long task_id);
 
-/*    @Transactional
-    @Modifying
-    @Query(nativeQuery = true, value = "INSERT INTO tasks(creation_date, deadline, description, name, status, creator_id, executor_id) VALUES " +
-            "(?2, ?5, ?4, ?1, ?7, ?2, ?6)")
-    void saveTask(String task_name, Long creator_id, Date creation_date, String description, Date deadline, Long executor_id, String status);
-
-    @Transactional
-    @Modifying
-    @Query(nativeQuery = true, value = "INSERT INTO tasks_user(task_id, user_id) VALUES " +
-            "((SELECT DISTINCT id FROM tasks ORDER BY id DESC), ?2)")
-    void saveTaskUser(Long task_id, Long user_id);*/
 
     @Transactional
     @Modifying
