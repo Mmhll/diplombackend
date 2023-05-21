@@ -52,7 +52,7 @@ public interface TasksRepository extends JpaRepository<Tasks, Long> {
     @Query(nativeQuery = true, value = "UPDATE tasks SET executor_id = ?1 WHERE tasks.id = ?2")
     void updateExecutor(Long executor_id, Long task_id);
 
-    @Transactional
+/*    @Transactional
     @Modifying
     @Query(nativeQuery = true, value = "INSERT INTO tasks(creation_date, deadline, description, name, status, creator_id, executor_id) VALUES " +
             "(?2, ?5, ?4, ?1, ?7, ?2, ?6)")
@@ -62,5 +62,15 @@ public interface TasksRepository extends JpaRepository<Tasks, Long> {
     @Modifying
     @Query(nativeQuery = true, value = "INSERT INTO tasks_user(task_id, user_id) VALUES " +
             "((SELECT DISTINCT id FROM tasks ORDER BY id DESC), ?2)")
-    void saveTaskUser(Long task_id, Long user_id);
+    void saveTaskUser(Long task_id, Long user_id);*/
+
+    @Transactional
+    @Modifying
+    @Query(nativeQuery = true, value = "DELETE FROM tasks_user WHERE tasks_user.task_id = ?1")
+    void deleteTasksUsersById(Long task_id);
+
+    @Transactional
+    @Modifying
+    @Query(nativeQuery = true, value = "DELETE FROM tasks WHERE id = ?1")
+    void deleteTasksById(Long task_id);
 }
