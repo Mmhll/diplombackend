@@ -39,11 +39,11 @@ public class MessageService {
         }
     }
 
-    public ResponseEntity<MessageResponse> deleteMessage(MessageChatRequest request) {
+    public ResponseEntity<MessageResponse> deleteMessage(Long messageId, Long chatId) {
         try {
-            Message message = messageRepository.findById(request.getMessage_id()).orElseThrow(() -> new RuntimeException("Message not found"));
+            Message message = messageRepository.findById(messageId).orElseThrow(() -> new RuntimeException("Message not found"));
             messageRepository.delete(message);
-            messageRepository.deleteMessageChat(request.getChat_id(), request.getMessage_id());
+            messageRepository.deleteMessageChat(chatId, messageId);
             return ResponseEntity.ok().body(new MessageResponse("Message was deleted"));
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(new MessageResponse("Something went wrong"));

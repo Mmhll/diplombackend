@@ -50,9 +50,9 @@ public class ChatService {
         }
     }
 
-    public ResponseEntity<MessageResponse> deleteChat(IdRequest request) {
+    public ResponseEntity<MessageResponse> deleteChat(Long id) {
         try {
-            chatRepository.deleteById(request.getId());
+            chatRepository.deleteById(id);
             return ResponseEntity.ok().body(new MessageResponse("Chat was deleted"));
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(new MessageResponse("Chat not found or something went wrong"));
@@ -68,9 +68,9 @@ public class ChatService {
         }*/
     }
 
-    public ResponseEntity<MessageResponse> deleteChatMember(UserIdChatIdRequest request) {
+    public ResponseEntity<MessageResponse> deleteChatMember(Long userId, Long chatId) {
         try {
-            chatRepository.deleteUserFromChat(request.getChat_id(), request.getUser_id());
+            chatRepository.deleteUserFromChat(chatId, userId);
             return ResponseEntity.ok().body(new MessageResponse("User was deleted"));
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(new MessageResponse("User not found in this chat or something went wrong"));

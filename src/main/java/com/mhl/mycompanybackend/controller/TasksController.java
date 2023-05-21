@@ -59,8 +59,8 @@ public class TasksController {
     
     @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/delete_task")
-    public ResponseEntity<MessageResponse> deleteTask(@RequestBody IdRequest id) {
-        return service.deleteTaskById(id);
+    public ResponseEntity<MessageResponse> deleteTask(@RequestParam("id") String id) {
+        return service.deleteTaskById(Long.parseLong(id));
     }
 
 
@@ -82,8 +82,8 @@ public class TasksController {
     
     @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/delete_member")
-    public ResponseEntity<MessageResponse> deleteMember(@RequestBody TaskUserRequest request) {
-        return service.deleteMember(request.getUser_id(), request.getTask_id());
+    public ResponseEntity<MessageResponse> deleteMember(@RequestParam("user_id") String userId, @RequestParam("task_id") String taskId) {
+        return service.deleteMember(Long.parseLong(userId), Long.parseLong(taskId));
     }
 
     

@@ -45,7 +45,7 @@ public class UserController {
     
     @DeleteMapping("/delete_user")
     @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<?> deleteUser(@RequestBody OneParamStringRequest request){
-        return userService.deleteUser(request.getParam());
+    public ResponseEntity<?> deleteUser(@RequestParam("email") String email){
+        return userService.deleteUser(email);
     }
 }

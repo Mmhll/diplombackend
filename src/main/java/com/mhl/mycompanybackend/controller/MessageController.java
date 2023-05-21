@@ -1,6 +1,5 @@
 package com.mhl.mycompanybackend.controller;
 
-import com.mhl.mycompanybackend.pojo.MessageChatRequest;
 import com.mhl.mycompanybackend.pojo.MessageRequest;
 import com.mhl.mycompanybackend.pojo.MessageResponse;
 import com.mhl.mycompanybackend.service.MessageService;
@@ -25,7 +24,7 @@ public class MessageController {
     }
 
     @DeleteMapping("/delete_message")
-    public ResponseEntity<MessageResponse> deleteMessage(@RequestBody MessageChatRequest request){
-        return service.deleteMessage(request);
+    public ResponseEntity<MessageResponse> deleteMessage(@RequestParam("message_id") String messageId, @RequestParam("chat_id") String chatId){
+        return service.deleteMessage(Long.parseLong(messageId), Long.parseLong(chatId));
     }
 }

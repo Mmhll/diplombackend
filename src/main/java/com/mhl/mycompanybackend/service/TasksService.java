@@ -70,9 +70,9 @@ public class TasksService {
         return ResponseEntity.ok().body(new MessageResponse("Task was saved"));
     }
 
-    public ResponseEntity<MessageResponse> deleteTaskById(IdRequest id){
+    public ResponseEntity<MessageResponse> deleteTaskById(Long id){
         try {
-            Tasks task = tasksRepository.findById(id.getId()).get();
+            Tasks task = tasksRepository.findById(id).get();
             tasksRepository.deleteTasksUsersById(task.getId());
             tasksRepository.deleteTasksById(task.getId());
             return ResponseEntity.ok().body(new MessageResponse("Task was deleted"));
@@ -116,9 +116,9 @@ public class TasksService {
     }
 
 
-    public ResponseEntity<MessageResponse> deleteMember(Long member_id, Long task_id){
+    public ResponseEntity<MessageResponse> deleteMember(Long memberId, Long taskId){
         try {
-            tasksRepository.deleteMemberFromTask(task_id, member_id);
+            tasksRepository.deleteMemberFromTask(memberId, taskId);
             return ResponseEntity.ok().body(new MessageResponse("User was deleted from task"));
         } catch (Exception e){
             return ResponseEntity.badRequest().body(new MessageResponse("User or task doesn't exists"));

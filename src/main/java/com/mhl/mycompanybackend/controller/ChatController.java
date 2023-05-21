@@ -37,8 +37,8 @@ public class ChatController {
     
     @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/delete_chat")
-    public ResponseEntity<MessageResponse> deleteChat(@RequestBody IdRequest request){
-        return service.deleteChat(request);
+    public ResponseEntity<MessageResponse> deleteChat(@RequestParam("id") String id){
+        return service.deleteChat(Long.parseLong(id));
     }
 
     
@@ -53,8 +53,8 @@ public class ChatController {
     
     @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/delete_chat_member")
-    public ResponseEntity<MessageResponse> deleteChatMember(@RequestBody UserIdChatIdRequest request){
-        return service.deleteChatMember(request);
+    public ResponseEntity<MessageResponse> deleteChatMember(@RequestParam("user_id") String userId, @RequestParam("chat_id") String chatId){
+        return service.deleteChatMember(Long.parseLong(userId), Long.parseLong(chatId));
     }
     
     @PreAuthorize("hasAnyRole('ADMIN', 'EDITUSER', 'MODERATOR')")
