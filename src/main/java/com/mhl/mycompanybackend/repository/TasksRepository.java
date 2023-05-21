@@ -44,7 +44,7 @@ public interface TasksRepository extends JpaRepository<Tasks, Long> {
     void addMemberToTask(Long task_id, Long user_id);
 
     @Transactional
-    @Query(nativeQuery = true, value = "SELECT * FROM tasks_user WHERE task_id = ?1 AND user_id ?2")
+    @Query(nativeQuery = true, value = "SELECT * FROM tasks_user WHERE task_id = ?1 AND user_id = ?2")
     void getTasksUser(Long task_id, Long user_id);
 
     @Transactional
