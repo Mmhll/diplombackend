@@ -104,17 +104,17 @@ public class TasksService {
 
     public ResponseEntity<MessageResponse> addMember(Long member_id, Long task_id) {
         try {
-            TaskUser task_user = tasksRepository.getTasksUser(task_id, member_id).get();
+            tasksRepository.getTasksUser(task_id, member_id).get();
             return ResponseEntity.badRequest().body(new MessageResponse("User already is member of task"));
         } catch (Exception e) {
-            try {
+//            try {
                 userRepository.findById(member_id).get();
                 tasksRepository.findById(task_id).get();
                 tasksRepository.addMemberToTask(task_id, member_id);
                 return ResponseEntity.ok().body(new MessageResponse("User was added to task"));
-            } catch (Exception ex) {
+/*            } catch (Exception ex) {
                 return ResponseEntity.badRequest().body(new MessageResponse("User or task doesn't exists"));
-            }
+            }*/
 
         }
 
