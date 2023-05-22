@@ -100,4 +100,36 @@ public class Tasks {
     public List<Users> getMembers() {
         return members;
     }
+
+    public Date getCreation_date() {
+        return creation_date;
+    }
+
+    public void setCreation_date(Date creation_date) {
+        this.creation_date = creation_date;
+    }
+
+    public Date getDate_of_update() {
+        return date_of_update;
+    }
+
+    public void setDate_of_update(Date date_of_update) {
+        this.date_of_update = date_of_update;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Date getDeadline() {
+        return deadline;
+    }
+
+    public void setDeadline(Date deadline) {
+        this.deadline = deadline;
+    }
 }
