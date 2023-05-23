@@ -34,9 +34,10 @@ public class UserService {
                     request.getFirstname(),
                     request.getLastname(),
                     request.getMiddlename(),
+                    request.getPhone_number(),
                     request.getId()
             );
-            userRepository.updateUserEmailAndUsername(request.getId(), request.getEmail());
+            userRepository.updateUserEmail(request.getId(), request.getEmail());
             return ResponseEntity.ok().body(new MessageResponse("User was updated"));
         } catch(Exception e) {
             return ResponseEntity.badRequest().body(new MessageResponse("User not found"));

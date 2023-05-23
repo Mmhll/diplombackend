@@ -17,7 +17,6 @@ public interface UserRepository extends JpaRepository<Users, Long> {
     Optional<Users> findByEmail(String email);
 
     Boolean existsByUsername(String username);
-    Optional<Users> findUsersByUsernameAndPassword(String email, String password);
 
     Boolean existsByEmail(String email);
     @Transactional
@@ -25,7 +24,7 @@ public interface UserRepository extends JpaRepository<Users, Long> {
     @Query(nativeQuery = true, value = "UPDATE users SET " +
             "email = ?2 "+
             "WHERE id = ?1")
-    void updateUserEmailAndUsername(Long id, String email);
+    void updateUserEmail(Long id, String email);
 
     @Transactional
     @Modifying

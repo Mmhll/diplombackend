@@ -10,8 +10,8 @@ public interface UserDataRepository extends CrudRepository<UserData, Long> {
     @Transactional
     @Modifying
     @Query(nativeQuery = true, value = "UPDATE user_data " +
-            "SET firstname = ?1, lastname = ?2, middlename = ?3 " +
-            "WHERE id = ?4")
-    void updateUser(String firstname, String lastname, String middlename, Long id);
+            "SET firstname = ?1, lastname = ?2, middlename = ?3, phone_number = ?4 " +
+            "WHERE id = ?5")
+    void updateUser(String firstname, String lastname, String middlename, String phone_number, Long id);
 
 }

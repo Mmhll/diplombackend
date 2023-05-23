@@ -3,21 +3,21 @@ package com.mhl.mycompanybackend.pojo;
 public class UserRequest {
     private Long id;
     private String email;
-    private String username;
     private String firstname;
     private String lastname;
     private String middlename;
+    private String phone_number;
 
     public UserRequest() {
     }
 
-    public UserRequest(Long id, String email, String username, String firstname, String lastname, String middlename) {
+    public UserRequest(Long id, String email,String firstname, String lastname, String middlename, String phoneNumber) {
         this.id = id;
         this.email = email;
-        this.username = username;
         this.firstname = firstname;
         this.lastname = lastname;
         this.middlename = middlename;
+        phone_number = phoneNumber;
     }
 
     public Long getId() {
@@ -30,14 +30,6 @@ public class UserRequest {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
     }
 
     public String getFirstname() {
@@ -63,4 +55,13 @@ public class UserRequest {
     public void setMiddlename(String middlename) {
         this.middlename = middlename;
     }
+
+    public String getPhone_number() {
+        return phone_number;
+    }
+
+    public void setPhone_number(String phone_number) {
+        this.phone_number = phone_number;
+    }
+
 }
