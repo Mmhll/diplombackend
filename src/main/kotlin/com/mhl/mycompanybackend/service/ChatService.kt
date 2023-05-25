@@ -23,7 +23,7 @@ class ChatService(private val chatRepository: ChatRepository, private val servic
                 return ResponseEntity.badRequest().body(MessageResponse("Chat members must not be null"))
             }
             val chat = Chat(request.name)
-            val users = ArrayList<Users?>()
+            val users = ArrayList<Users>()
             request.members.forEach(Consumer { user: Long -> users.add(service.getUserById(user)) })
             chat.users = users
             chatRepository.save(chat)

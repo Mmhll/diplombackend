@@ -38,7 +38,7 @@ class TasksController(val service: TasksService) {
     @PreAuthorize("hasAnyRole('ADMIN', 'MODERATOR', 'EDITUSER')")
     @PostMapping("/save_task")
     fun saveTask(@RequestBody task: TaskRequest?): ResponseEntity<*> {
-        return service.saveTask(task)
+        return service.saveTask(task!!)
     }
 
     @PreAuthorize("hasRole('ADMIN')")
@@ -50,13 +50,13 @@ class TasksController(val service: TasksService) {
     @PreAuthorize("hasAnyRole('ADMIN', 'MODERATOR', 'EDITUSER')")
     @PutMapping("/update_status")
     fun updateStatus(@RequestBody request: StatusRequest?): ResponseEntity<MessageResponse> {
-        return service.updateStatus(request)
+        return service.updateStatus(request!!)
     }
 
     @PreAuthorize("hasAnyRole('ADMIN', 'MODERATOR', 'EDITUSER')")
     @PutMapping("/update_task")
     fun updateTask(@RequestBody request: UpdateTaskRequest?): ResponseEntity<MessageResponse> {
-        return service.updateTask(request)
+        return service.updateTask(request!!)
     }
 
     @PreAuthorize("hasRole('ADMIN')")
@@ -68,7 +68,7 @@ class TasksController(val service: TasksService) {
     @PreAuthorize("hasAnyRole('ADMIN', 'MODERATOR', 'EDITUSER')")
     @PostMapping("/add_member")
     fun addMember(@RequestBody request: TaskUserRequest): ResponseEntity<MessageResponse> {
-        return service.addMember(request.user_id, request.task_id)
+        return service.addMember(request.user_id!!, request.task_id!!)
     }
 
     @PreAuthorize("hasAnyRole('ADMIN', 'MODERATOR')")

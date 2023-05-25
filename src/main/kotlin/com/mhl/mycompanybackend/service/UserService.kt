@@ -46,10 +46,10 @@ class UserService(private val userRepository: UserRepository, private val userDa
     }
 
     fun deleteUser(email: String?): ResponseEntity<*> {
-        val user = userRepository.findByEmail(email).orElseThrow { RuntimeException("User not found") }
+        val user = userRepository.findByEmail(email)?.orElseThrow { RuntimeException("User not found") }
         return try {
-            userRepository.deleteFromUserRoles(user.id)
-            userRepository.delete(user)
+            userRepository.deleteFromUserRoles(user?.id)
+            userRepository.delete(user!!)
             ResponseEntity.ok().body<MessageResponse>(MessageResponse("User was successfully deleted"))
         } catch (e: Exception) {
             ResponseEntity.badRequest().body<MessageResponse>(MessageResponse(e.message!!))

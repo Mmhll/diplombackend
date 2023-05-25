@@ -6,8 +6,8 @@ import org.springframework.boot.runApplication
 
 @SpringBootApplication
 @OpenAPIDefinition
-open class MycompanybackendApplication {
+open class MycompanybackendApplication
     fun main(args: Array<String>) {
         runApplication<MycompanybackendApplication>(*args)
     }
-}
+

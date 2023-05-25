@@ -7,14 +7,6 @@ import javax.persistence.*
 @Entity
 @Table(name = "users", uniqueConstraints = [UniqueConstraint(columnNames = ["username"]), UniqueConstraint(columnNames = ["email"])])
 class Users {
-    /*
-    public List<Tasks> getTasks() {
-        return tasks;
-    }
-
-    public void setTasks(List<Tasks> tasks) {
-        this.tasks = tasks;
-    }*/
     @JvmField
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

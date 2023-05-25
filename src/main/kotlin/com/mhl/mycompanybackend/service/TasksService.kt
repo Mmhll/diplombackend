@@ -54,11 +54,11 @@ class TasksService(val tasksRepository: TasksRepository, val userRepository: Use
         taskRequest.members!!.forEach(Consumer { member: Long -> members.add(userRepository.findById(member).get()) })
         val task = Tasks(
                 taskRequest.task_name,
-                userRepository.findById(taskRequest.creator_id).get(),
+                userRepository.findById(taskRequest.creator_id!!).get(),
                 taskRequest.creation_date,
                 taskRequest.description,
                 taskRequest.deadline,
-                userRepository.findById(taskRequest.executor_id).get(),
+                userRepository.findById(taskRequest.executor_id!!).get(),
                 "Новая",
                 members
         )

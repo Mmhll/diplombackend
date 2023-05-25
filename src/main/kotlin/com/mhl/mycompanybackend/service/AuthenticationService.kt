@@ -41,7 +41,7 @@ class AuthenticationService(val authenticationManager: AuthenticationManager, va
 
     fun registerUser(signupRequest: SignupRequest): ResponseEntity<*> {
         val username = signupRequest.email!!.split("@".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()[0]
-        if (userRepository.existsByUsername(username) || userRepository.existsByEmail(signupRequest.email)) {
+        if (userRepository.existsByUsername(username)!! || userRepository.existsByEmail(signupRequest.email)!!) {
             return ResponseEntity
                     .badRequest()
                     .body(MessageResponse("Error: Username or email exists"))
@@ -52,17 +52,16 @@ class AuthenticationService(val authenticationManager: AuthenticationManager, va
                 signupRequest.middlename,
                 signupRequest.phone_number)
         userDataRepository.save(userData)
-        userDataRepository.findById(userData.id)
+        userDataRepository.findById(userData.id!!)
         val user = Users(username,
                 signupRequest.email,
                 passwordEncoder.encode(signupRequest.password),
                 userData)
-        val roles: MutableList<Roles?> = ArrayList()
+        val roles: MutableList<Roles> = ArrayList()
         val userRole = rolesRepository
-                .findRolesByRoleName("USER")
-                .orElseThrow { RuntimeException("Error, Role USER is not found") }
-        roles.add(userRole)
-        user.setRoles(roles)
+                .findRolesByRoleName("USER")?.orElseThrow { RuntimeException("Error, Role USER is not found") }
+        roles.add(userRole!!)
+        user.roles = roles
         userRepository.save(user)
         return ResponseEntity.ok().body(MessageResponse("User was created"))
     }
