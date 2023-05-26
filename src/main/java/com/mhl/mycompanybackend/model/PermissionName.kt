@@ -1,6 +1,6 @@
-package com.mhl.mycompanybackend.model;
+package com.mhl.mycompanybackend.model
 
-public enum PermissionName {
+enum class PermissionName {
     ROLE_USER,
     ROLE_MODERATOR,
     ROLE_EDITUSER,
