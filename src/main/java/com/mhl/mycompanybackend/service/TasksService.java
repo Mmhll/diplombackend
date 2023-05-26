@@ -8,6 +8,8 @@ import com.mhl.mycompanybackend.repository.UserRepository;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Objects;
 
@@ -86,7 +88,10 @@ public class TasksService {
 
     public ResponseEntity<MessageResponse> updateStatus(StatusRequest request) {
         try {
-            tasksRepository.updateStatus(request.getId(), request.getStatus());
+            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+            LocalDateTime now = LocalDateTime.now();
+            System.out.println();
+            tasksRepository.updateStatus(request.getId(), request.getStatus(), dtf.format(now));
             return ResponseEntity.ok().body(new MessageResponse("Task was updated"));
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(new MessageResponse("Task not found or something went wrong"));
