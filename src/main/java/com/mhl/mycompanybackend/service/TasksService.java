@@ -8,10 +8,14 @@ import com.mhl.mycompanybackend.repository.UserRepository;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Objects;
+import java.util.TimeZone;
 
 @Service
 public class TasksService {
@@ -88,10 +92,10 @@ public class TasksService {
 
     public ResponseEntity<MessageResponse> updateStatus(StatusRequest request) {
         try {
-            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
-            LocalDateTime now = LocalDateTime.now();
-            System.out.println();
-            tasksRepository.updateStatus(request.getId(), request.getStatus(), dtf.format(now));
+            TimeZone timeZone = TimeZone.getTimeZone("Asia/Yekaterinburg");
+            DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssX");
+            dateFormat.setTimeZone(timeZone);
+            tasksRepository.updateStatus(request.getId(), request.getStatus(), dateFormat.format(new Date()));
             return ResponseEntity.ok().body(new MessageResponse("Task was updated"));
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(new MessageResponse("Task not found or something went wrong"));
