@@ -6,24 +6,19 @@ import javax.persistence.*
 
 @Entity
 @Table(name = "users", uniqueConstraints = [UniqueConstraint(columnNames = ["username"]), UniqueConstraint(columnNames = ["email"])])
-class Users {
-    @JvmField
+open class Users {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     var id: Long? = null
-    @JvmField
     var username: String? = null
-    @JvmField
     var email: String? = null
 
-    @JvmField
     @JsonIgnore
     var password: String? = null
 
-    @JvmField
     @ManyToMany(fetch = FetchType.LAZY, cascade = [CascadeType.ALL])
     @JoinTable(name = "user_roles", joinColumns = [JoinColumn(name = "user_id")], inverseJoinColumns = [JoinColumn(name = "role_id")])
-    var roles: List<Roles> = ArrayList()
+    var roles: MutableList<Roles> = mutableListOf()
 
     @JvmField
     @OneToOne(cascade = [CascadeType.PERSIST], fetch = FetchType.LAZY)

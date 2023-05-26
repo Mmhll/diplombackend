@@ -1,6 +1,6 @@
 package com.mhl.mycompanybackend.pojo
 
-class RoleRequest {
-    var rolename: String? = null
-    var permission: String? = null
-}
+data class RoleRequest(
+    var rolename: String,
+    var permission: String
+)

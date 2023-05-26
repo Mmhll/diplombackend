@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*
 @RequestMapping("/api/message")
 @CrossOrigin(origins = ["*"], maxAge = 3600)
 @Api(tags = ["Message"])
-class MessageController(private val service: MessageService) {
+open class MessageController(private val service: MessageService) {
     @PostMapping("/add_message")
     fun addMessage(@RequestBody request: MessageRequest): ResponseEntity<MessageResponse> {
         return service.addMessage(request)

@@ -7,7 +7,7 @@ import javax.persistence.*
 
 @Entity
 @Table(name = "chat")
-class Chat {
+open class Chat {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     var id: Long? = null

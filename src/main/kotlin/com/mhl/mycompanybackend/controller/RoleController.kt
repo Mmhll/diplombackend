@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.*
 @CrossOrigin(origins = ["*"], maxAge = 3600)
 @Api(tags = ["Roles"])
 @ApiOperation(value = "", authorizations = [Authorization(value = "jwtToken")])
-class RoleController(private val rolesService: RolesService) {
+open class RoleController(val rolesService: RolesService) {
     @get:GetMapping("/get_all")
     val allRoles: ResponseEntity<*>
         get() = rolesService.findAllRoles()

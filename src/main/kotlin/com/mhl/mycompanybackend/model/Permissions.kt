@@ -4,7 +4,7 @@ import javax.persistence.*
 
 @Entity
 @Table(name = "permissions")
-class Permissions {
+open class Permissions {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     var id: Long? = null

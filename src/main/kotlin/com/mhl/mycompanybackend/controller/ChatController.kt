@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.*
 @CrossOrigin(origins = ["*"], maxAge = 3600)
 @Api(tags = ["Chat"])
 @ApiOperation(value = "", authorizations = [Authorization(value = "jwtToken")])
-class ChatController(val service: ChatService) {
+open class ChatController(val service: ChatService) {
     @PostMapping("/create")
     fun createChat(@RequestBody createChatRequest: CreateChatRequest?): ResponseEntity<*> {
         return service.addChat(createChatRequest!!)

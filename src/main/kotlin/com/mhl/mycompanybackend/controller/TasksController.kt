@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*
 @CrossOrigin(origins = ["*"], maxAge = 3600)
 @Api(tags = ["Tasks"])
 @ApiOperation(value = "", authorizations = [Authorization(value = "jwtToken")])
-class TasksController(val service: TasksService) {
+open class TasksController(val service: TasksService) {
     @GetMapping("/get_all_tasks_executor")
     fun getAllTasksExecutor(@RequestParam id: String): ResponseEntity<*> {
         return service.getAllTasksWhereExecutor(id.toLong())

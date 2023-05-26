@@ -4,7 +4,7 @@ import javax.persistence.*
 
 @Entity
 @Table(name = "roles", uniqueConstraints = [UniqueConstraint(columnNames = ["role_name"])])
-class Roles {
+open class Roles {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     var id: Long? = null
@@ -19,7 +19,7 @@ class Roles {
 
     constructor()
     constructor(roleName: String?, permissions: Permissions?) {
-        role_name = roleName
+        this.role_name = roleName
         this.permissions = permissions
     }
 }

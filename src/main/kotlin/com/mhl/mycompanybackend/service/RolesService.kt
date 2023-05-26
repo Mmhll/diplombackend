@@ -18,7 +18,7 @@ class RolesService(val rolesRepository: RolesRepository, val permissionsReposito
         }
     }
 
-    fun createRole(roleName: String?, permissions: String?): ResponseEntity<*> {
+    fun createRole(roleName: String, permissions: String): ResponseEntity<*> {
         val permission = permissionsRepository.findByName(
                 PermissionName.valueOf(permissions!!))?.orElseThrow { RuntimeException("Permission not found") }
         val role = Roles(roleName, permission)

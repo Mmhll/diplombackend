@@ -8,7 +8,7 @@ import javax.persistence.*
 @Entity
 @Table(name = "tasks") // Таблица tasks, хранящая задачи мобильного приложения
 
-class Tasks {
+open class Tasks {
     @JvmField
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

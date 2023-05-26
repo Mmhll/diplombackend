@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*
 @CrossOrigin(origins = ["*"], maxAge = 3600)
 @Api(tags = ["User"])
 @ApiOperation(value = "", authorizations = [Authorization(value = "jwtToken")])
-class UserController(val userService: UserService) {
+open class UserController(val userService: UserService) {
     @PutMapping("/update_user_data")
     fun updateUserData(@RequestBody request: UserRequest?): ResponseEntity<*> {
         return userService.setUserData(request!!)

@@ -4,7 +4,7 @@ import javax.persistence.*
 
 @Entity
 @Table(name = "user_data")
-class UserData {
+open class UserData {
     @JvmField
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

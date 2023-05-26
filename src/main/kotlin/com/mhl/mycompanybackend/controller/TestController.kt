@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController
 @RequestMapping("/api/test")
 @CrossOrigin(origins = ["*"], maxAge = 3600)
 @Api(tags = ["Test"])
-class TestController {
+open class TestController {
     @GetMapping("/all")
     fun allAccess(): String {
         return "public API"

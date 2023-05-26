@@ -6,7 +6,7 @@ import javax.persistence.*
 
 @Entity
 @Table(name = "message")
-class Message {
+open class Message {
     @JvmField
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

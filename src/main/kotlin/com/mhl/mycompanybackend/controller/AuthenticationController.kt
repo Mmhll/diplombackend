@@ -14,27 +14,15 @@ import org.springframework.web.bind.annotation.*
 @RequestMapping("/api/auth")
 @CrossOrigin(origins = ["*"], maxAge = 3600)
 @Api(tags = ["Auth"])
-class AuthenticationController {
-    val authenticationService: AuthenticationService
-    var messages: ErrorMessages? = null
-
-    constructor(authenticationService: AuthenticationService) {
-        this.authenticationService = authenticationService
-    }
-
-    @Autowired
-    constructor(authenticationService: AuthenticationService, messages: ErrorMessages?) {
-        this.authenticationService = authenticationService
-        this.messages = messages
-    }
+open class AuthenticationController(val authenticationService: AuthenticationService, val messages: ErrorMessages) {
 
     @PostMapping("/signin")
-    fun authUser(@RequestBody signInRequest: SignInRequest?): ResponseEntity<*> {
-        return try {
-            authenticationService.authenticate(signInRequest!!)
+    fun authUser(@RequestBody signInRequest: SignInRequest): ResponseEntity<*> {
+        /*return try {*/
+            return authenticationService.authenticate(signInRequest)/*
         } catch (e: Exception) {
             messages!!.badRequest()
-        }
+        }*/
     }
 
     @PreAuthorize("hasAnyRole('ADMIN', 'EDITUSER', 'MODERATOR', 'USER')")
