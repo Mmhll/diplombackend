@@ -2,7 +2,10 @@ package com.mhl.mycompanybackend.service;
 
 import com.mhl.mycompanybackend.model.Tasks;
 import com.mhl.mycompanybackend.model.Users;
-import com.mhl.mycompanybackend.pojo.*;
+import com.mhl.mycompanybackend.pojo.MessageResponse;
+import com.mhl.mycompanybackend.pojo.StatusRequest;
+import com.mhl.mycompanybackend.pojo.TaskRequest;
+import com.mhl.mycompanybackend.pojo.UpdateTaskRequest;
 import com.mhl.mycompanybackend.repository.TasksRepository;
 import com.mhl.mycompanybackend.repository.UserRepository;
 import org.springframework.http.ResponseEntity;
@@ -10,10 +13,8 @@ import org.springframework.stereotype.Service;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+import java.time.Instant;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.Objects;
 import java.util.TimeZone;
 
@@ -93,9 +94,9 @@ public class TasksService {
     public ResponseEntity<MessageResponse> updateStatus(StatusRequest request) {
         try {
             TimeZone timeZone = TimeZone.getTimeZone("Asia/Yekaterinburg");
-            DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssX");
+            DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
             dateFormat.setTimeZone(timeZone);
-            tasksRepository.updateStatus(request.getId(), request.getStatus(), dateFormat.format(new Date()));
+            tasksRepository.updateStatus(request.getId(), request.getStatus(), Instant.now().toString());
             return ResponseEntity.ok().body(new MessageResponse("Task was updated"));
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(new MessageResponse("Task not found or something went wrong"));
