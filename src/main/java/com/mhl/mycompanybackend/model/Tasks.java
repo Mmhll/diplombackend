@@ -32,6 +32,7 @@ public class Tasks {
     @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "executor_id")
     private Users executor;
+    @Transient
     @JsonManagedReference(value = "task-members")
     @ManyToMany(cascade = CascadeType.MERGE)
     @JoinTable(name = "tasks_user",
