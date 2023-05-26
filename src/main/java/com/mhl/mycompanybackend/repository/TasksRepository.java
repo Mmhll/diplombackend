@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
 
@@ -24,7 +25,7 @@ public interface TasksRepository extends JpaRepository<Tasks, Long> {
     @Query(nativeQuery = true, value = "UPDATE tasks " +
             "SET status = ?2, date_of_update =?3 " +
             "WHERE id = ?1")
-    void updateStatus(Long id, String status, String datetime);
+    void updateStatus(Long id, String status, Timestamp datetime);
 
     @Modifying
     @Transactional

@@ -60,12 +60,12 @@ public class ChatService {
     }
 
     public ResponseEntity<?> getChats(String id) {
-        /*try {*/
+        try {
 
         return ResponseEntity.ok().body(chatRepository.findChatsByUsersOrderByUpdatedAtDescCreatedAtDesc(userRepository.findById(Long.parseLong(id)).orElseThrow(() -> new RuntimeException("user not found"))));
-        /*} catch (Exception e){
+        } catch (Exception e){
             return ResponseEntity.badRequest().body(new MessageResponse("No chats found"));
-        }*/
+        }
     }
 
     public ResponseEntity<MessageResponse> deleteChatMember(Long userId, Long chatId) {

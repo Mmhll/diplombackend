@@ -11,6 +11,7 @@ import com.mhl.mycompanybackend.repository.UserRepository;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.Instant;
@@ -93,10 +94,7 @@ public class TasksService {
 
     public ResponseEntity<MessageResponse> updateStatus(StatusRequest request) {
         try {
-            TimeZone timeZone = TimeZone.getTimeZone("Asia/Yekaterinburg");
-            DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
-            dateFormat.setTimeZone(timeZone);
-            tasksRepository.updateStatus(request.getId(), request.getStatus(), Instant.now().toString());
+            tasksRepository.updateStatus(request.getId(), request.getStatus(), Timestamp.from(Instant.now()));
             return ResponseEntity.ok().body(new MessageResponse("Task was updated"));
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(new MessageResponse("Task not found or something went wrong"));
