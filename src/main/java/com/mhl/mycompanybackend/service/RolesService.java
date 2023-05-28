@@ -49,19 +49,11 @@ public class RolesService {
         return rolesRepository.findRolesByRoleName(roleName).orElseThrow(() -> new RuntimeException("Role not found"));
     }
 
-    public ResponseEntity<MessageResponse> editRoleName(Long id, String roleName){
+    public ResponseEntity<MessageResponse> editRoleName(Long id, String roleName, PermissionName permission){
         try {
-            rolesRepository.updateRoleName(id, roleName);
+            Long permissionId = rolesRepository.getPermissions(permission);
+            rolesRepository.updateRole(id, roleName, permissionId);
             return ResponseEntity.ok().body(new MessageResponse("Role was updated"));
-        } catch (Exception e){
-            return ResponseEntity.badRequest().body(new MessageResponse("Role not found"));
-        }
-    }
-
-    public ResponseEntity<MessageResponse> editRolePermission(String roleName, PermissionName permissionName){
-        try {
-            rolesRepository.updateRolePermission(permissionName,roleName);
-            return ResponseEntity.ok().body(new MessageResponse("Permissions was updated"));
         } catch (Exception e){
             return ResponseEntity.badRequest().body(new MessageResponse("Role not found"));
         }
