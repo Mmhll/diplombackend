@@ -55,11 +55,10 @@ public class UserService {
         return ResponseEntity.ok().body(userRepository.findAll());
     }
 
-    public ResponseEntity<?> deleteUser(String username) {
-        var user = userRepository.findByUsername(username).orElseThrow(() -> new RuntimeException("User not found"));
+    public ResponseEntity<?> deleteUser(Long id) {
         try {
-            userRepository.deleteFromUserRoles(user.getId());
-            userRepository.delete(user);
+            userRepository.deleteFromUserRoles(id);
+            userRepository.deleteById(id);
             return ResponseEntity.ok().body(new MessageResponse("User was successfully deleted"));
         } catch (Exception e){
             return ResponseEntity.badRequest().body(new MessageResponse(e.getMessage()));
