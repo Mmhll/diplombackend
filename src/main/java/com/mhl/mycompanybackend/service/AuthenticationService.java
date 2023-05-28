@@ -83,7 +83,6 @@ public class AuthenticationService {
                 signupRequest.getPhone_number());
 
         userDataRepository.save(userData);
-        userDataRepository.findById(userData.getId());
         Users user = new Users(username,
                 signupRequest.getEmail(),
                 passwordEncoder.encode(signupRequest.getPassword()),
@@ -91,7 +90,7 @@ public class AuthenticationService {
 
         List<Roles> roles = new ArrayList<>();
         Roles userRole = rolesRepository
-                .findRolesByRoleName("USER")
+                .findById(1L)
                 .orElseThrow(() -> new RuntimeException("Error, Role USER is not found"));
         roles.add(userRole);
         user.setRoles(roles);
