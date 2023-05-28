@@ -1,6 +1,7 @@
 package com.mhl.mycompanybackend.controller;
 
 import com.mhl.mycompanybackend.pojo.OneParamStringRequest;
+import com.mhl.mycompanybackend.pojo.UserIdAndRoleIdRequest;
 import com.mhl.mycompanybackend.pojo.UserRequest;
 import com.mhl.mycompanybackend.pojo.UsernameAndPasswordRequest;
 import com.mhl.mycompanybackend.service.UserService;
@@ -47,5 +48,11 @@ public class UserController {
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<?> deleteUser(@RequestParam("id") String id){
         return userService.deleteUser(Long.parseLong(id));
+    }
+
+    @PutMapping("update_user_role")
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<?> updateUserRole(@RequestBody UserIdAndRoleIdRequest request){
+        return userService.updateUserRole(request);
     }
 }

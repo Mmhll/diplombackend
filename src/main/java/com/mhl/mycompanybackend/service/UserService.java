@@ -2,6 +2,7 @@ package com.mhl.mycompanybackend.service;
 
 import com.mhl.mycompanybackend.model.Users;
 import com.mhl.mycompanybackend.pojo.MessageResponse;
+import com.mhl.mycompanybackend.pojo.UserIdAndRoleIdRequest;
 import com.mhl.mycompanybackend.pojo.UserRequest;
 import com.mhl.mycompanybackend.pojo.UsernameAndPasswordRequest;
 import com.mhl.mycompanybackend.repository.UserDataRepository;
@@ -61,6 +62,15 @@ public class UserService {
             userRepository.deleteFromUserRoles(id);
             userRepository.deleteById(id);
             return ResponseEntity.ok().body(new MessageResponse("User was successfully deleted"));
+        } catch (Exception e){
+            return ResponseEntity.badRequest().body(new MessageResponse(e.getMessage()));
+        }
+    }
+
+    public ResponseEntity<?> updateUserRole(UserIdAndRoleIdRequest request) {
+        try {
+            userRepository.updateUserRole(request.getUser_id(), request.getRole_id());
+            return ResponseEntity.ok().body(new MessageResponse("User role was updated"));
         } catch (Exception e){
             return ResponseEntity.badRequest().body(new MessageResponse(e.getMessage()));
         }

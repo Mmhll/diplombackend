@@ -37,4 +37,11 @@ public interface UserRepository extends JpaRepository<Users, Long> {
             " password = ?2 " +
             "WHERE id = ?1")
     void updateUserPassword(Long id, String password);
+
+    @Transactional
+    @Modifying
+    @Query(nativeQuery = true, value = "UPDATE user_roles SET " +
+            "role_id = ?2" +
+            " WHERE user_id = ?1")
+    void updateUserRole(Long userId, Long roleId);
 }
