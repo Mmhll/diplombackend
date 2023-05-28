@@ -49,7 +49,7 @@ public class RolesService {
         return rolesRepository.findRolesByRoleName(roleName).orElseThrow(() -> new RuntimeException("Role not found"));
     }
 
-    public ResponseEntity<MessageResponse> editRoleName(Long id, String roleName, String permission){
+    public ResponseEntity<MessageResponse> editRole(Long id, String roleName, String permission){
         try {
             Long permissionId = rolesRepository.getPermissions(permission);
             rolesRepository.updateRole(id, roleName, permissionId);

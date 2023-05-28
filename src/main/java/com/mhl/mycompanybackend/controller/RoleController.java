@@ -1,6 +1,5 @@
 package com.mhl.mycompanybackend.controller;
 
-import com.mhl.mycompanybackend.model.PermissionName;
 import com.mhl.mycompanybackend.pojo.RoleRequest;
 import com.mhl.mycompanybackend.pojo.RolenameRequest;
 import com.mhl.mycompanybackend.pojo.UpdateRoleRequest;
@@ -50,7 +49,7 @@ public class RoleController {
     @PreAuthorize("hasAnyRole('ADMIN', 'MODERATOR')")
     @PostMapping("/edit_role")
     ResponseEntity<?> editRole(@RequestBody UpdateRoleRequest request) {
-        return rolesService.editRoleName(request.getId(), request.getRolename(), request.getPermission());
+        return rolesService.editRole(request.getId(), request.getRolename(), request.getPermission());
     }
 
 }
