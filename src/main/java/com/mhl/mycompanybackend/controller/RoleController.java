@@ -49,7 +49,7 @@ public class RoleController {
     @PreAuthorize("hasAnyRole('ADMIN', 'MODERATOR')")
     @PostMapping("/edit_role_name")
     ResponseEntity<?> editRoleName(@RequestBody RolenameRequest request) {
-        return rolesService.editRoleName(request.getRolename());
+        return rolesService.editRoleName(request.getId(), request.getRolename());
     }
 
     

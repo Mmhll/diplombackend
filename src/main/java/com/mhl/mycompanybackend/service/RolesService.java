@@ -49,9 +49,9 @@ public class RolesService {
         return rolesRepository.findRolesByRoleName(roleName).orElseThrow(() -> new RuntimeException("Role not found"));
     }
 
-    public ResponseEntity<MessageResponse> editRoleName(String roleName){
+    public ResponseEntity<MessageResponse> editRoleName(Long id, String roleName){
         try {
-            rolesRepository.updateRoleName(roleName);
+            rolesRepository.updateRoleName(id, roleName);
             return ResponseEntity.ok().body(new MessageResponse("Role was updated"));
         } catch (Exception e){
             return ResponseEntity.badRequest().body(new MessageResponse("Role not found"));

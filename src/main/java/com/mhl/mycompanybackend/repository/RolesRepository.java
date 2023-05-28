@@ -13,9 +13,9 @@ import java.util.Optional;
 public interface RolesRepository extends JpaRepository<Roles, Long> {
     @Query(nativeQuery = true, value = "SELECT DISTINCT * FROM roles WHERE roles.role_name = ?1")
     Optional<Roles> findRolesByRoleName(String roleName);
-    @Query(nativeQuery = true, value = "UPDATE roles SET role_name = ?1 WHERE role_name = ?1")
+    @Query(nativeQuery = true, value = "UPDATE roles SET role_name = ?2 WHERE id = ?1")
     @Modifying
-    void updateRoleName(String roleName);
+    void updateRoleName(Long id, String roleName);
     @Query(nativeQuery = true, value = "UPDATE roles SET permission_id = ?1 WHERE role_name = ?2")
     @Modifying
     void updateRolePermission(PermissionName permission, String roleName);
