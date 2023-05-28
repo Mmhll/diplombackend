@@ -21,5 +21,5 @@ public interface RolesRepository extends JpaRepository<Roles, Long> {
     void updateRole(Long id, String roleName, Long permission_id);
 
     @Query(nativeQuery = true, value = "SELECT id FROM permissions WHERE name = ?1")
-    Long getPermissions(PermissionName permission);
+    Long getPermissions(String permission);
 }
