@@ -30,6 +30,16 @@ public interface UserRepository extends JpaRepository<Users, Long> {
     @Modifying
     @Query(nativeQuery = true, value = "DELETE FROM user_roles WHERE user_id = ?1")
     void deleteFromUserRoles(Long id);
+    @Transactional
+    @Modifying
+    @Query(nativeQuery = true, value = "DELETE FROM tasks_user WHERE user_id = ?1")
+    void deleteFromUserTasks(Long id);
+    @Transactional
+    @Modifying
+    @Query(nativeQuery = true, value = "DELETE FROM mhl.public.chat_user WHERE user_id = ?1")
+    void deleteFromChatUser(Long id);
+
+
 
     @Transactional
     @Modifying
