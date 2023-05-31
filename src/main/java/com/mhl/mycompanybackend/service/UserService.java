@@ -60,10 +60,10 @@ public class UserService {
         try {
             userDataRepository.deleteById(id);
             userRepository.deleteFromUserRoles(id);
-            userRepository.deleteById(id);
             userRepository.deleteFromUserTasks(id);
             userRepository.deleteFromChatUser(id);
             userRepository.deleteFromUserRoles(id);
+            userRepository.deleteById(id);
             return ResponseEntity.ok().body(new MessageResponse("User was successfully deleted"));
         } catch (Exception e){
             return ResponseEntity.badRequest().body(new MessageResponse(e.getMessage()));
